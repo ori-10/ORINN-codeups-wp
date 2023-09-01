@@ -1,5 +1,18 @@
 <?php get_header(); ?>
-
+<?php
+$top = esc_url( home_url( '/' ) );
+$campaign = esc_url( home_url( '/campaign/' ) );
+$about = esc_url( home_url( '/about/' ) );
+$information = esc_url( home_url( '/information/' ) );
+$blog = esc_url( home_url( '/blog/' ) );
+$voice = esc_url( home_url( '/voice/' ) );
+$price = esc_url( home_url( '/price/' ) );
+$faq = esc_url( home_url( '/faq/' ) );
+$privacy = esc_url( home_url( '/privacy/' ) );
+$termsofservise = esc_url( home_url( '/terms-of-service/' ) );
+$contact = esc_url( home_url( '/contact/' ) );
+$sitemap = esc_url( home_url( '/sitemap/' ) );
+?>
 <!-- 下層ページのメインビュー -->
 <div class="sub-mv sub-mv--voice js-mv-height">
   <div class="sub-mv__inner">
@@ -19,7 +32,7 @@
 
       <div class="sub-voice__tab">
         <ul class="tab js-tab">
-          <li class="tab__item active"><a href="archive-voice.html">ALL</a></li>
+          <li class="tab__item active"><a href="<?php echo $voice; ?>">ALL</a></li>
 
           <?php
           $terms = get_terms('voice_category');

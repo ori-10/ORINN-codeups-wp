@@ -9,19 +9,21 @@
 </head>
 
 <?php
+$top = esc_url( home_url( '/' ) );
 $campaign = esc_url( home_url( '/campaign/' ) );
 $about = esc_url( home_url( '/about/' ) );
 $information = esc_url( home_url( '/information/' ) );
-$blog = esc_url( home_url( '/home/' ) );
+$blog = esc_url( home_url( '/blog/' ) );
 $voice = esc_url( home_url( '/voice/' ) );
 $price = esc_url( home_url( '/price/' ) );
-
+$faq = esc_url( home_url( '/faq/' ) );
+$privacy = esc_url( home_url( '/privacy/' ) );
+$termsofservise = esc_url( home_url( '/terms-of-service/' ) );
 $contact = esc_url( home_url( '/contact/' ) );
+$sitemap = esc_url( home_url( '/sitemap/' ) );
 ?>
 
-<!-- <?php echo $campaign; ?> -->
-
-<body <?php body_class( is_404() ? 'not-found-wrapper' : '' ); ?>>
+<body <?php body_class(); ?>>
   <?php wp_body_open(); ?>
   <div id=" loading" class="loading">
     <div class="loading__inner">
@@ -44,7 +46,7 @@ $contact = esc_url( home_url( '/contact/' ) );
   <header id="header" class="header js-header">
     <div class="header__inner">
       <h1 class="header__logo logo">
-        <a href="./" class="logo__img">
+        <a href="<?php echo $top; ?>" class="logo__img">
           <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/CodeUps.svg" alt="CodeUps" />
         </a>
       </h1>
@@ -92,7 +94,7 @@ $contact = esc_url( home_url( '/contact/' ) );
           <div class="sp-nav__wrap sp-nav__wrap--space">
             <ul class="sp-nav__items">
               <li class="sp-nav__item-title">
-                <a href="archive-voice.html">お客様の声</a>
+                <a href="<?php echo $voice; ?>">お客様の声</a>
               </li>
               <li class="sp-nav__item-title">
                 <a href="<?php echo $price; ?>">料金一覧</a>
@@ -105,20 +107,20 @@ $contact = esc_url( home_url( '/contact/' ) );
             </ul>
             <ul class="sp-nav__items">
               <li class="sp-nav__item-title">
-                <a href="page-faq.html">よくある質問</a>
+                <a href="<?php echo $faq; ?>">よくある質問</a>
               </li>
               <li class="sp-nav__item-title">
-                <a href="page-privacy.html">プライバシー<br />
+                <a href="<?php echo $privacy; ?>">プライバシー<br />
                   ポリシー</a>
               </li>
               <li class="sp-nav__item-title">
-                <a href="page-terms-of-service.html">利用規約</a>
+                <a href="<?php echo $termsofservise; ?>">利用規約</a>
               </li>
               <li class="sp-nav__item-title">
-                <a href="page-contact.html">お問い合わせ</a>
+                <a href="<?php echo $contact; ?>">お問い合わせ</a>
               </li>
               <li class="sp-nav__item-title">
-                <a href="page-site-map.html">サイトマップ</a>
+                <a href="<?php echo $sitemap; ?>">サイトマップ</a>
               </li>
             </ul>
           </div>
@@ -128,49 +130,49 @@ $contact = esc_url( home_url( '/contact/' ) );
       <nav class="header__pc-nav pc-nav">
         <ul class="pc-nav__items">
           <li class="pc-nav__item">
-            <a href="archive-campaign.html">
+            <a href="<?php echo $campaign; ?>">
               <span>Campaign</span>
               <span>キャンペーン</span>
             </a>
           </li>
           <li class="pc-nav__item">
-            <a href="page-about.html">
+            <a href="<?php echo $about; ?>">
               <span>About us</span>
               <span>私たちについて</span>
             </a>
           </li>
           <li class="pc-nav__item">
-            <a href="page-information.html">
+            <a href="<?php echo $information; ?>">
               <span>Information</span>
               <span>ダイビング情報</span>
             </a>
           </li>
           <li class="pc-nav__item">
-            <a href="home.html">
+            <a href="<?php echo $blog; ?>">
               <span>Blog</span>
               <span>ブログ</span>
             </a>
           </li>
           <li class="pc-nav__item">
-            <a href="archive-voice.html">
+            <a href="<?php echo esc_url( home_url( '/voice' ) ); ?>">
               <span>Voice</span>
               <span>お客様の声</span>
             </a>
           </li>
           <li class="pc-nav__item">
-            <a href="page-price.html">
+            <a href="<?php echo $price; ?>">
               <span>Price</span>
               <span>料金一覧</span>
             </a>
           </li>
           <li class="pc-nav__item">
-            <a href="page-faq.html">
+            <a href="<?php echo $faq; ?>">
               <span>FAQ</span>
               <span>よくある質問</span>
             </a>
           </li>
           <li class="pc-nav__item">
-            <a href="page-contact.html">
+            <a href="<?php echo $contact; ?>">
               <span>Contact</span>
               <span>お問合せ</span>
             </a>

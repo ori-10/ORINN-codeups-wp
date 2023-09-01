@@ -1,5 +1,18 @@
 <?php get_header(); ?>
-
+<?php
+$top = esc_url( home_url( '/' ) );
+$campaign = esc_url( home_url( '/campaign/' ) );
+$about = esc_url( home_url( '/about/' ) );
+$information = esc_url( home_url( '/information/' ) );
+$blog = esc_url( home_url( '/blog/' ) );
+$voice = esc_url( home_url( '/voice/' ) );
+$price = esc_url( home_url( '/price/' ) );
+$faq = esc_url( home_url( '/faq/' ) );
+$privacy = esc_url( home_url( '/privacy/' ) );
+$termsofservise = esc_url( home_url( '/terms-of-service/' ) );
+$contact = esc_url( home_url( '/contact/' ) );
+$sitemap = esc_url( home_url( '/sitemap/' ) );
+?>
 
 <!-- 下層ページのメインビュー -->
 <div class="sub-mv js-mv-height">
@@ -20,72 +33,68 @@
       <nav class="site-map__nav">
         <div class="site-map__wrap">
           <ul class="site-map__items">
-            <li class="site-map__item-title">
-              <a href="archive-campaign.html">キャンペーン</a>
+            <li class="site-map__item-title">                <a href="<?php echo $campaign; ?>">キャンペーン</a>
+
               <ul class="site-map__item">
-                <li>
-                  <a href="archive-campaign.html">ライセンス講習</a>
-                </li>
-                <li>
-                  <a href="archive-campaign.html">ファンダイビング</a>
-                </li>
-                <li>
-                  <a href="archive-campaign.html">体験ダイビング</a>
-                </li>
+              <?php
+                  $terms = get_terms('campaign_category');
+                  foreach ( $terms as $term ) {
+                  echo '<li><a href="'.get_term_link($term).'">'.esc_html($term->name).'</a></li>';
+                  }
+                ?>
               </ul>
             </li>
 
-            <li class="site-map__item-title">
-              <a href="page-about.html">私たちについて</a>
+            <li class="site-map__item-title">                <a href="<?php echo $about; ?>">私たちについて</a>
+
             </li>
           </ul>
           <ul class="site-map__items">
-            <li class="site-map__item-title">
-              <a href="page-information.html">ダイビング情報</a>
+            <li class="site-map__item-title">               
+              <a href="<?php echo $information; ?>">ダイビング情報</a>
+
               <ul class="site-map__item">
-                <li><a href="page-information.html#info1">ライセンス講習</a></li>
-                <li><a href="page-information.html#info2">ファンダイビング</a></li>
-                <li>
-                  <a href="page-information.html#info3">体験ダイビング</a>
-                </li>
+                <li><a href="<?php echo esc_url( home_url( '/information#info1' ) ); ?>">ライセンス講習</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/information#info2' ) ); ?>">ファンダイビング</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/information#info3' ) ); ?>">体験ダイビング</a></li>
               </ul>
             </li>
             <li class="site-map__item-title">
-              <a href="home.html">ブログ</a>
+            <a href="<?php echo $blog; ?>">ブログ</a>
             </li>
           </ul>
         </div>
 
         <div class="site-map__wrap site-map__wrap--space">
           <ul class="site-map__items">
-            <li class="site-map__item-title">
-              <a href="archive-voice.html">お客様の声</a>
+            <li class="site-map__item-title">                
+              <a href="<?php echo $voice; ?>">お客様の声</a>
             </li>
             <li class="site-map__item-title">
-              <a href="page-price.html">料金一覧</a>
+            <a href="<?php echo $price; ?>">料金一覧</a>
               <ul class="site-map__item">
-                <li><a href="page-price.html#price1">ライセンス講習</a></li>
-                <li><a href="page-price.html#price2">体験ダイビング</a></li>
-                <li><a href="page-price.html#price3">ファンダイビング</a></li>
+              <li><a href="<?php echo esc_url( home_url( '/price#price1' ) ); ?>">ライセンス講習</a></li>
+                  <li><a href="<?php echo esc_url( home_url( '/price#price2' ) ); ?>">体験ダイビング</a></li>
+                  <li><a href="<?php echo esc_url( home_url( '/price#price3' ) ); ?>">ファンダイビング</a></li>
               </ul>
             </li>
           </ul>
           <ul class="site-map__items">
             <li class="site-map__item-title">
-              <a href="page-faq.html">よくある質問</a>
+            <a href="<?php echo $faq; ?>">よくある質問</a>
             </li>
             <li class="site-map__item-title site-map__item-title--br">
-              <a href="page-privacy.html"><span>プライバシー</span><br class="u-mobile" />
+                <a href="<?php echo $privacy; ?>">プライバシー<br  class="u-mobile"/>
                 <span>ポリシー</span></a>
             </li>
             <li class="site-map__item-title">
-              <a href="page-terms-of-service.html">利用規約</a>
+                <a href="<?php echo $termsofservise; ?>">利用規約</a>
             </li>
             <li class="site-map__item-title">
-              <a href="page-contact.html">お問い合わせ</a>
+                <a href="<?php echo $contact; ?>">お問い合わせ</a>
             </li>
             <li class="site-map__item-title">
-              <a href="page-site-map.html">サイトマップ</a>
+                <a href="<?php echo $sitemap; ?>">サイトマップ</a>
             </li>
           </ul>
         </div>

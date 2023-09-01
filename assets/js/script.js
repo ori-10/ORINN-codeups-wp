@@ -506,12 +506,13 @@ jQuery(function ($) {
       // .breadcrumb__item--errorの表示制御
       var breadcrumbErrorElement = $(".breadcrumb__item--error");
       breadcrumbErrorElement.toggleClass("active", hasAnyRequiredField);
-      if (hasAnyRequiredField) {
-        event.preventDefault(); // バリデーションエラー時はデフォルトの送信を阻止
-      } else {
-        // 未入力項目がない場合の処理
-        window.location.href = "page-thanks.html"; // ページ遷移
-      }
+
+      // if (hasAnyRequiredField) {
+      //   event.preventDefault(); // バリデーションエラー時はデフォルトの送信を阻止
+      // } else {
+      //   // 未入力項目がない場合の処理
+      //   window.location.href = "page-thanks.html"; // ページ遷移
+      // }
     });
   });
 });

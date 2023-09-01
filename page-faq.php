@@ -1,6 +1,4 @@
 <?php get_header(); ?>
-
-
 <!-- 下層ページのメインビュー -->
 <div class="sub-mv js-mv-height sub-mv--faq">
   <div class="sub-mv__inner">

@@ -1,5 +1,18 @@
 <?php get_header(); ?>
-
+<?php
+$top = esc_url( home_url( '/' ) );
+$campaign = esc_url( home_url( '/campaign/' ) );
+$about = esc_url( home_url( '/about/' ) );
+$information = esc_url( home_url( '/information/' ) );
+$blog = esc_url( home_url( '/blog/' ) );
+$voice = esc_url( home_url( '/voice/' ) );
+$price = esc_url( home_url( '/price/' ) );
+$faq = esc_url( home_url( '/faq/' ) );
+$privacy = esc_url( home_url( '/privacy/' ) );
+$termsofservise = esc_url( home_url( '/terms-of-service/' ) );
+$contact = esc_url( home_url( '/contact/' ) );
+$sitemap = esc_url( home_url( '/sitemap/' ) );
+?>
 
 <!-- 下層ページのメインビュー -->
 <div class="sub-mv js-mv-height sub-mv--campaign">
@@ -20,7 +33,7 @@
       <div class="sub-campaign__items">
 
         <ul class="sub-campaign__tab-item tab js-tab">
-          <li class="tab__item active"><a href="archive-campaign.html">ALL</a></li>
+          <li class="tab__item active"><a href="<?php echo $campaign; ?>">ALL</a></li>
 
           <?php
             $terms = get_terms('campaign_category');
@@ -73,7 +86,7 @@
                       <p><?php the_field('campaign_1'); ?></p>
                       <p>ご予約・お問い合わせはコチラ</p>
                       <div class="pc-info__btn">
-                        <a href="page-contact.html" class="btn">
+                        <a href="<?php echo $contact; ?>" class="btn">
                           Contact us
                           <span class="btn__arrow"></span>
                         </a>

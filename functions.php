@@ -153,8 +153,8 @@ function custom_taxonomy_archive_posts_per_page($query) {
 }
 add_action('pre_get_posts', 'custom_taxonomy_archive_posts_per_page');
 
-//全ての固定ページのエディタを非表示にする
-function my_remove_post_editor_support() { 
-	remove_post_type_support( 'page', 'editor' ); 
-}
-add_action('init', 'my_remove_post_editor_support');
+// //全ての固定ページのエディタを非表示にする
+// function my_remove_post_editor_support() { 
+// 	remove_post_type_support( 'page', 'editor' ); 
+// }
+// add_action('init', 'my_remove_post_editor_support');

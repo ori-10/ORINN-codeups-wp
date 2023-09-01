@@ -1,3 +1,19 @@
+
+<?php
+$top = esc_url( home_url( '/' ) );
+$campaign = esc_url( home_url( '/campaign/' ) );
+$about = esc_url( home_url( '/about/' ) );
+$information = esc_url( home_url( '/information/' ) );
+$blog = esc_url( home_url( '/blog/' ) );
+$voice = esc_url( home_url( '/voice/' ) );
+$price = esc_url( home_url( '/price/' ) );
+$faq = esc_url( home_url( '/faq/' ) );
+$privacy = esc_url( home_url( '/privacy/' ) );
+$termsofservise = esc_url( home_url( '/terms-of-service/' ) );
+$contact = esc_url( home_url( '/contact/' ) );
+$sitemap = esc_url( home_url( '/sitemap/' ) );
+?>
+
 <?php if (!is_404()) : // 404ページではない場合にコンタクトセクションを表示 ?>
 <section id="contact" class="contact top-contact">
   <div class="contact__inner inner">
@@ -32,7 +48,7 @@
         <p class="contact__text">ご予約・お問い合わせはコチラ</p>
 
         <div class="contact__btn">
-          <a href="page-contact.html" class="btn">
+          <a href="<?php echo $contact; ?>" class="btn">
             Contact us
             <span class="btn__arrow"></span>
           </a>
@@ -55,14 +71,21 @@
       <div class="footer__logo">
         <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/CodeUps.svg" alt="CodeUps" />
       </div>
+      <?php
+        // 現在のページURLを取得してURLエンコード
+        $url_encode = urlencode( get_permalink() );
+        // 現在のページのタイトルを取得してURLエンコード
+        $title_encode = urlencode( get_the_title() );
+      ?>
+
       <ul class="footer__link-items">
         <li class="footer__link-item1">
-          <a href="https://ja-jp.facebook.com/">
+          <a target="_blank" href="<?php echo esc_url( 'https://ja-jp.facebook.com/' . $url_encode ); ?>">
             <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/footer-face.png" alt="" />
           </a>
         </li>
         <li class="footer__link-item2">
-          <a href="https://www.instagram.com/">
+          <a  target="_blank" href="<?php echo esc_url( 'https://www.instagram.com/' . $url_encode ); ?>">
             <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/footer-insta.png" alt="" />
           </a>
         </li>
@@ -73,37 +96,34 @@
       <div class="footer-nav__wrap">
         <ul class="footer-nav__items">
           <li class="footer-nav__item-title">
-            <a href="archive-campaign.html">キャンペーン</a>
+            <a href="<?php echo $campaign; ?>">キャンペーン</a>
             <ul class="footer-nav__item">
-              <li>
-                <a href="archive-campaign.html">ライセンス講習</a>
-              </li>
-              <li>
-                <a href="archive-campaign.html">ファンダイビング</a>
-              </li>
-              <li>
-                <a href="archive-campaign.html">体験ダイビング</a>
-              </li>
+            <?php
+              $terms = get_terms('campaign_category');
+              foreach ( $terms as $term ) {
+              echo '<li><a href="'.get_term_link($term).'">'.esc_html($term->name).'</a></li>';
+            }
+            ?>
             </ul>
           </li>
 
           <li class="footer-nav__item-title">
-            <a href="page-about.html">私たちについて</a>
+            <a href="<?php echo $about; ?>">私たちについて</a>
           </li>
         </ul>
         <ul class="footer-nav__items">
           <li class="footer-nav__item-title">
-            <a href="page-information.html">ダイビング情報</a>
+            <a href="<?php echo $information; ?>">ダイビング情報</a>
             <ul class="footer-nav__item">
-              <li><a href="page-information.html#info1">ライセンス講習</a></li>
-              <li><a href="page-information.html#info2">ファンダイビング</a></li>
+              <li><a href="<?php echo esc_url( home_url( '/information#info1' ) ); ?>">ライセンス講習</a></li>
+              <li><a href="<?php echo esc_url( home_url( '/information#info2' ) ); ?>">ファンダイビング</a></li>
               <li>
-                <a href="page-information.html#info3">体験ダイビング</a>
+                <a href="<?php echo esc_url( home_url( '/information#info3' ) ); ?>">体験ダイビング</a>
               </li>
             </ul>
           </li>
           <li class="footer-nav__item-title">
-            <a href="home.html">ブログ</a>
+            <a href="<?php echo $blog; ?>">ブログ</a>
           </li>
         </ul>
       </div>
@@ -111,33 +131,33 @@
       <div class="footer-nav__wrap footer-nav__wrap--space">
         <ul class="footer-nav__items">
           <li class="footer-nav__item-title">
-            <a href="archive-voice.html">お客様の声</a>
+            <a href="<?php echo $voice; ?>">お客様の声</a>
           </li>
           <li class="footer-nav__item-title">
-            <a href="page-price.html">料金一覧</a>
+            <a href="<?php echo $price; ?>">料金一覧</a>
             <ul class="footer-nav__item">
-              <li><a href="page-price.html#price1">ライセンス講習</a></li>
-              <li><a href="page-price.html#price2">体験ダイビング</a></li>
-              <li><a href="page-price.html#price3">ファンダイビング</a></li>
+              <li><a href="<?php echo esc_url( home_url( '/price#price1' ) ); ?>">ライセンス講習</a></li>
+              <li><a href="<?php echo esc_url( home_url( '/price#price2' ) ); ?>">体験ダイビング</a></li>
+              <li><a href="<?php echo esc_url( home_url( '/price#price3' ) ); ?>">ファンダイビング</a></li>
             </ul>
           </li>
         </ul>
         <ul class="footer-nav__items">
           <li class="footer-nav__item-title">
-            <a href="page-faq.html">よくある質問</a>
+            <a href="<?php echo $faq; ?>">よくある質問</a>
           </li>
           <li class="footer-nav__item-title footer-nav__item-title--br">
-            <a href="page-privacy.html"><span>プライバシー</span><br class="u-mobile" />
+            <a href="<?php echo $privacy; ?>"><span>プライバシー</span><br class="u-mobile" />
               <span>ポリシー</span></a>
           </li>
           <li class="footer-nav__item-title">
-            <a href="page-terms-of-service.html">利用規約</a>
+            <a href="<?php echo $termsofservise; ?>">利用規約</a>
           </li>
           <li class="footer-nav__item-title">
-            <a href="page-contact.html">お問い合わせ</a>
+            <a href="<?php echo $contact; ?>">お問い合わせ</a>
           </li>
           <li class="footer-nav__item-title">
-            <a href="page-site-map.html">サイトマップ</a>
+            <a href="<?php echo $sitemap; ?>">サイトマップ</a>
           </li>
         </ul>
       </div>

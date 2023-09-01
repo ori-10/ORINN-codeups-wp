@@ -1332,6 +1332,11 @@ a {
 	text-align: center;
 }
 
+.error404 {
+	background: #408F95;
+	color: #fff;
+}
+
 .faq-accordion p {
 	border: 1px solid #408F95;
 	margin-bottom: -1px;
@@ -2409,11 +2414,6 @@ textarea.required,
 	border-left: solid 1px #fff;
 }
 
-.not-found-wrapper {
-	background: #408F95;
-	color: #fff;
-}
-
 .not-found {
 	font-family: "Lato", sans-serif;
 	padding-bottom: 2.6875rem;
@@ -3233,6 +3233,7 @@ textarea.required,
 	position: absolute;
 	top: 50%;
 	transform: translate(-50%, -50%);
+	width: 100%;
 }
 
 .sub-mv__title h2 {
