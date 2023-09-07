@@ -7,7 +7,7 @@ function enqueue_custom_styles_and_scripts() {
     wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css');
     
     // Custom CSS
-    wp_enqueue_style('custom-styles', get_theme_file_uri('/assets/css/style.css'));
+    wp_enqueue_style('custom-styles', get_theme_file_uri('/dist/assets/css/style.css'));
     
     // jQuery
     wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.6.0.js', array(), null, true);
@@ -16,7 +16,7 @@ function enqueue_custom_styles_and_scripts() {
     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js', array('jquery'), null, true);
     
     // Custom JS
-    wp_enqueue_script('custom-script', get_theme_file_uri('/assets/js/script.js'), array('jquery', 'swiper-js'), null, true);
+    wp_enqueue_script('custom-script', get_theme_file_uri('/dist/assets/js/script.js'), array('jquery', 'swiper-js'), null, true);
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_custom_styles_and_scripts');
@@ -40,8 +40,17 @@ function my_setup() {
 }
 add_action( 'after_setup_theme', 'my_setup' );
 
-// セキュリティ対策
+// セキュリティ対策 バージョン情報を隠す
 remove_action('wp_head', 'wp_generator');
+// セキュリティ対策 404へ
+// function disable_author_archive()
+// {
+// if (preg_match('#/author/.+#', $_SERVER['REQUEST_URI'])) {
+// wp_redirect(esc_url(home_url('/404.php')));
+// exit;
+// }
+// }
+// add_action('init', 'disable_author_archive');
 
 // キャンペーン・お客様の声一覧はアーカイブのみの表示、詳細ページは無し
 add_action('template_redirect', 'disable_cpt_single_pages');
@@ -151,10 +160,57 @@ function custom_taxonomy_archive_posts_per_page($query) {
       $query->set('posts_per_page', 6); // 表示件数を6件に指定
   }
 }
+
 add_action('pre_get_posts', 'custom_taxonomy_archive_posts_per_page');
+function custom_body_class($classes) {
+  // この条件で .blog クラスを除外
+  if (is_single() || is_archive() || is_page() || is_home()) {
+      $key = array_search('blog', $classes);
+      if ($key !== false) {
+          unset($classes[$key]);
+      }
+  }
+  return $classes;
+}
+
+// フィルターフックにカスタム関数を登録
+add_filter('body_class', 'custom_body_class');
 
 // //全ての固定ページのエディタを非表示にする
-// function my_remove_post_editor_support() { 
-// 	remove_post_type_support( 'page', 'editor' ); 
-// }
-// add_action('init', 'my_remove_post_editor_support');
+function my_remove_post_editor_support() { 
+	remove_post_type_support( 'page', 'editor' ); 
+}
+add_action('init', 'my_remove_post_editor_support');
+
+//Contact Form 7 のカスタマイズ
+function filter_wpcf7_form_tag($scanned_tag, $replace) {
+  if (!empty($scanned_tag)) {
+    if ($scanned_tag['name'] == 'menu-968') {
+      global $post;
+      $args = array(
+        'posts_per_page' => -1,
+        'post_type' => 'campaign',
+        'order' => 'DESC',
+      );
+      $customPosts = get_posts($args);
+      $unique_titles = array(); // 重複を防ぐための一時的な配列
+
+      if ($customPosts) {
+        foreach ($customPosts as $post) {
+          setup_postdata($post);
+          $title = get_the_title();
+
+          // 重複をチェックし、重複がない場合に追加
+          if (!in_array($title, $unique_titles)) {
+            $unique_titles[] = $title;
+            $scanned_tag['values'][] = $title;
+            $scanned_tag['labels'][] = $title;
+          }
+        }
+      }
+      wp_reset_postdata();
+    }
+  }
+  return $scanned_tag;
+}
+add_filter('wpcf7_form_tag', 'filter_wpcf7_form_tag', 11, 2);

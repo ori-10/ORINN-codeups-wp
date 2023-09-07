@@ -74,8 +74,8 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                     全部コミコミ(お一人様)
                   </p>
                   <div class="campaign-card__price">
-                    <div class="campaign-card__before-price"><?php the_field('campaign_price1'); ?></div>
-                    <span class="campaign-card__after-price"><?php the_field('campaign_price2'); ?></span>
+                    <div class="campaign-card__before-price">¥<?php the_field('campaign_price1'); ?></div>
+                    <span class="campaign-card__after-price">¥<?php the_field('campaign_price2'); ?></span>
                   </div>
 
                   <div class="campaign-card__pc-info pc-info u-desktop">

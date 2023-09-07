@@ -15,10 +15,6 @@
 <main>
   <div id="sub-contact" class="sub-contact layout-sub-contact">
     <div class="sub-contact__inner inner">
-      <div class="sub-contact__error">
-        <p>※必須項目が入力されていません。<br class="u-mobile">
-          入力してください。</p>
-      </div>
       <?php echo do_shortcode('[contact-form-7 id="2a4a7b5" title="お問い合わせ"]'); ?>
     </div>
   </div>

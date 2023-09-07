@@ -18,11 +18,11 @@
 
       <div class="sub-about__img-block">
         <div class="sub-about__right-img">
-          <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/about1.jpg" alt="" />
+          <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/about1.jpg" alt="黄色い魚" />
         </div>
         <div class="sub-about__left-block">
           <div class="sub-about__left-img">
-            <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/about2.jpg" alt="" />
+            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/about2.jpg" alt="シーサー" />
           </div>
         </div>
 
@@ -34,14 +34,14 @@
           </h3>
           <div class="sub-about__text-wrap">
             <p class="sub-about__pc-text">
-              ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />
-              ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
+              私たちのダイビングショップは、安全で楽しいダイビング体験を提供します。<br />
+              豊かな海の世界を一緒に探検し、専門的なサポートで思い出に残る冒険をお届けします。プロのインストラクターがあなたの安全を第一に考え、最高のダイビング体験をお楽しみいただけます。
             </p>
           </div>
         </div>
         <p class="sub-about__sp-text">
-          ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />
-          ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
+          私たちのダイビングショップは、安全で楽しいダイビング体験を提供します。<br />
+          豊かな海の世界を一緒に探検し、専門的なサポートで思い出に残る冒険をお届けします。プロのインストラクターがあなたの安全を第一に考え、最高のダイビング体験をお楽しみいただけます。
         </p>
       </div>
     </div>

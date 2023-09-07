@@ -19,7 +19,7 @@
         <li id="price1" class="chart">
           <h3 class="chart__title">
             <span class="chart__img u-desktop"><img
-                src="<?php echo get_theme_file_uri(); ?>/assets/images/common/price-icon.png" alt="" /></span>
+                src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/price-icon.png" alt="" /></span>
             <span>ライセンス講習</span>
           </h3>
           <dl class="chart__item">
@@ -32,7 +32,7 @@
                 <?php echo $fields['course1']; ?>
               </dt>
               <dd>
-                <?php echo $fields['price1']; ?>
+                <?php echo '¥'.$fields['price1']; ?>
               </dd>
             </div>
             <?php } ?>
@@ -41,7 +41,7 @@
         <li id="price2" class="chart">
           <h3 class="chart__title">
             <span class="chart__img u-desktop"><img
-                src="<?php echo get_theme_file_uri(); ?>/assets/images/common/price-icon.png" alt="" /></span>
+                src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/price-icon.png" alt="" /></span>
             <span>体験ダイビング</span>
           </h3>
           <dl class="chart__item">
@@ -54,7 +54,7 @@
                 <?php echo $fields['course2']; ?>
               </dt>
               <dd>
-                <?php echo $fields['price2']; ?>
+                <?php echo '¥'.$fields['price2']; ?>
               </dd>
             </div>
             <?php } ?>
@@ -63,7 +63,7 @@
         <li id="price3" class="chart">
           <h3 class="chart__title">
             <span class="chart__img u-desktop"><img
-                src="<?php echo get_theme_file_uri(); ?>/assets/images/common/price-icon.png" alt="" /></span>
+                src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/price-icon.png" alt="" /></span>
             <span>ファンダイビング</span>
           </h3>
           <dl class="chart__item">
@@ -76,7 +76,7 @@
                 <?php echo $fields['course3']; ?>
               </dt>
               <dd>
-                <?php echo $fields['price3']; ?>
+                <?php echo '¥'.$fields['price3']; ?>
               </dd>
             </div>
             <?php } ?>
@@ -84,8 +84,8 @@
         </li>
         <li class="chart">
           <h3 id="price4" class="chart__title">
-            <span class="chart__img"><img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/price-icon.png"
-                alt="" /></span>
+            <span class="chart__img"><img
+                src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/price-icon.png" alt="" /></span>
             <span>スペシャルダイビング</span>
           </h3>
           <dl class="chart__item">
@@ -98,7 +98,7 @@
                 <?php echo $fields['course4']; ?>
               </dt>
               <dd>
-                <?php echo $fields['price4']; ?>
+                <?php echo '¥'.$fields['price4']; ?>
               </dd>
             </div>
             <?php } ?>

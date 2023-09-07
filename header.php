@@ -34,10 +34,10 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
 
       <div class="loading__image-container">
         <div class="loading__left-image">
-          <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/mask1.jpg" alt="" />
+          <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/mask1.jpg" alt="" />
         </div>
         <div class="loading__right-image">
-          <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/mask2.jpg" alt="" />
+          <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/mask2.jpg" alt="" />
         </div>
       </div>
     </div>
@@ -47,7 +47,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
     <div class="header__inner">
       <h1 class="header__logo logo">
         <a href="<?php echo $top; ?>" class="logo__img">
-          <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/CodeUps.svg" alt="CodeUps" />
+          <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/CodeUps.svg" alt="CodeUps" />
         </a>
       </h1>
 

@@ -51,7 +51,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
 <!-- /.top-mv-->
 <main>
 
-<?php
+  <?php
     $args = array('post_type' => 'campaign',
     'posts_per_page' => -1); 
     // 'post_status' => 'publish', // 公開済の投稿を指定
@@ -67,19 +67,19 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       <div class="campaign__cards campaign-cards">
         <div class="js-campaign-swiper campaign-cards__swiper swiper">
           <div class="swiper-wrapper">
-          <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+            <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
             <div class="campaign-cards__swiper-slide swiper-slide">
               <div class="campaign-cards__item campaign-card">
                 <figure class="campaign-card__img">
-                <?php if ( get_the_post_thumbnail() ) : ?>
+                  <?php if ( get_the_post_thumbnail() ) : ?>
                   <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>のアイキャッチ画像">
                   <?php else: ?>
-                  <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/noimage.jpg" alt="noimage">
+                  <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/noimage.jpg" alt="noimage">
                   <?php endif; ?>
                 </figure>
                 <div class="campaign-card__body">
                   <div class="campaign-card__body-head">
-                  <?php
+                    <?php
                   $terms = get_the_terms(get_the_ID(), 'campaign_category'); // カスタムタクソノミーのタームを取得
                   if ($terms && !is_wp_error($terms)) { // タームが取得されているか確認
                       $term = array_shift($terms); // 最初のタームを取得
@@ -91,8 +91,8 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                   </div>
                   <p class="campaign-card__text">全部コミコミ(お一人様)</p>
                   <div class="campaign-card__price">
-                    <div class="campaign-card__before-price"><?php the_field('campaign_price1'); ?></div>
-                    <span class="campaign-card__after-price"><?php the_field('campaign_price2'); ?></span>
+                    <div class="campaign-card__before-price">¥<?php the_field('campaign_price1'); ?></div>
+                    <span class="campaign-card__after-price">¥<?php the_field('campaign_price2'); ?></span>
                   </div>
                 </div>
               </div>
@@ -128,11 +128,11 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
 
       <div class="about__img-block">
         <div class="about__right-img">
-          <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/about1.jpg" alt="" />
+          <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/about1.jpg" alt="" />
         </div>
         <div class="about__left-block">
           <div class="about__left-img">
-            <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/about2.jpg" alt="" />
+            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/about2.jpg" alt="" />
           </div>
         </div>
       </div>
@@ -145,8 +145,8 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
         </h3>
         <div class="about__text-wrap">
           <p class="about__text">
-            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />
-            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキスト
+            私たちのダイビングショップは、安全で楽しいダイビング体験を提供します。<br />
+            豊かな海の世界を一緒に探検し、専門的なサポートで思い出に残る冒険をお届けします。プロのインストラクターがあなたの安全を第一に考え、最高のダイビング体験をお楽しみいただけます。
           </p>
           <div class="about__btn">
             <a href="<?php echo $about; ?>" class="btn">
@@ -167,7 +167,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       </div>
       <div class="information__box">
         <div class="information__img">
-          <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/info.jpg" alt="" />
+          <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/info.jpg" alt="" />
         </div>
         <div class="information__body">
           <h3 class="information__title">ライセンス講習</h3>
@@ -201,24 +201,24 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       <div class="blog__cards blog-cards">
         <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
         <a href="<?php the_permalink(); ?>" class="blog-cards__item blog-card">
-        <figure class="blog-card__img">
-          <?php if ( get_the_post_thumbnail() ) : ?>
+          <figure class="blog-card__img">
+            <?php if ( get_the_post_thumbnail() ) : ?>
             <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>のアイキャッチ画像">
             <?php else: ?>
-            <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/noimage.jpg" alt="no image">
+            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/noimage.jpg" alt="no image">
             <?php endif; ?>
           </figure>
           <div class="blog-card__body">
-          <time class="blog-card__day" datetime="<?php the_time('c'); ?>"><?php the_time('Y.m/d'); ?></time>
-          <h3 class="blog-card__title"><?php the_title(); ?></h3>
-                <div class="blog-card__text">
-                <?php the_excerpt(); ?>
-                </div>
+            <time class="blog-card__day" datetime="<?php the_time('c'); ?>"><?php the_time('Y.m/d'); ?></time>
+            <h3 class="blog-card__title"><?php the_title(); ?></h3>
+            <div class="blog-card__text">
+              <?php the_excerpt(); ?>
+            </div>
           </div>
         </a>
         <?php endwhile; ?>
         <?php wp_reset_postdata(); endif; ?>
-      
+
       </div>
       <div class="blog__btn">
         <a href="<?php echo $blog; ?>" class="btn">
@@ -243,13 +243,13 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       </div>
 
       <div class="voice__cards voice-cards">
-      <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+        <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
         <div class="voice-cards__item voice-card">
           <div class="voice-card__head">
             <div class="voice-card__info-wrap">
               <div class="voice-card__info">
                 <span class="voice-card__age"><?php the_field('voice_1'); ?></span>
-                
+
                 <?php
                   $terms = get_the_terms(get_the_ID(), 'voice_category'); // カスタムタクソノミーのタームを取得
                   if ($terms && !is_wp_error($terms)) { // タームが取得されているか確認
@@ -260,15 +260,15 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                   ?>
               </div>
               <h3 class="voice-card__title">
-              <?php the_title(); ?>
+                <?php the_title(); ?>
               </h3>
             </div>
 
             <figure class="voice-card__img voice-card__img--1">
-            <?php if ( get_the_post_thumbnail() ) : ?>
+              <?php if ( get_the_post_thumbnail() ) : ?>
               <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>のアイキャッチ画像">
               <?php else: ?>
-              <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/noimage.jpg" alt="no image">
+              <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/noimage.jpg" alt="no image">
               <?php endif; ?>
             </figure>
           </div>
@@ -278,7 +278,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
         </div>
         <?php endwhile; ?>
         <?php wp_reset_postdata(); endif; ?>
-      
+
       </div>
 
       <div class="voice__btn">
@@ -298,8 +298,10 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       </div>
       <div class="price__box">
         <div class="price__img">
-          <img class="u-mobile" src="<?php echo get_theme_file_uri(); ?>/assets/images/common/price1.jpg" alt="かめ" />
-          <img class="u-desktop" src="<?php echo get_theme_file_uri(); ?>/assets/images/common/price2.jpg" alt="サンゴ" />
+          <img class="u-mobile" src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/price1.jpg"
+            alt="かめ" />
+          <img class="u-desktop" src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/price2.jpg"
+            alt="サンゴ" />
         </div>
         <div class="price__text-block">
           <ul class="price__list">
@@ -315,7 +317,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                     <?php echo $fields['course1']; ?>
                   </dt>
                   <dd>
-                    <?php echo $fields['price1']; ?>
+                    <?php echo '¥'.$fields['price1']; ?>
                   </dd>
                 </div>
                 <?php } ?>
@@ -333,7 +335,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                     <?php echo $fields['course2']; ?>
                   </dt>
                   <dd>
-                    <?php echo $fields['price2']; ?>
+                    <?php echo '¥'.$fields['price2']; ?>
                   </dd>
                 </div>
                 <?php } ?>
@@ -351,7 +353,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                     <?php echo $fields['course3']; ?>
                   </dt>
                   <dd>
-                    <?php echo $fields['price3']; ?>
+                    <?php echo '¥'.$fields['price3']; ?>
                   </dd>
                 </div>
                 <?php } ?>
@@ -369,7 +371,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                     <?php echo $fields['course4']; ?>
                   </dt>
                   <dd>
-                    <?php echo $fields['price4']; ?>
+                    <?php echo '¥'.$fields['price4']; ?>
                   </dd>
                 </div>
                 <?php } ?>

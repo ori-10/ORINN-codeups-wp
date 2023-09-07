@@ -12,138 +12,180 @@ $termsofservise = esc_url( home_url( '/terms-of-service/' ) );
 $contact = esc_url( home_url( '/contact/' ) );
 $sitemap = esc_url( home_url( '/sitemap/' ) );
 ?>
+
+<!-- blog人気記事 -->
 <aside class="aside">
-          <div class="aside__content">
-            <div class="aside__title">
-              <h2>人気記事</h2>
-            </div>
+  <div class="aside__content">
+    <div class="aside__title">
+      <h2>人気記事</h2>
+    </div>
+    <?php
+$args = array(
+  'posts_per_page' => 3,
+  'post_type' => 'post',
+  'post_status' => 'publish',
+  'orderby' => 'meta_value',
+  'meta_key' => 'pv'
+);
 
-            <a href="#" class="aside__blog-item aside-blog">
-              <figure class="aside-blog__img">
-                <img src="./assets/images/common/blog-card4.jpg" alt="" />
-              </figure>
-              <div class="aside-blog__body">
-                <time class="aside-blog__day" datetime="2023-11-17">2023.11/17</time>
-                <h3 class="aside-blog__title">ライセンス取得</h3>
-              </div>
+$the_query = new WP_Query($args);
+if( $the_query->have_posts() ) :
+  ?>
+    <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+
+    <a href="<?php the_permalink(); ?>" class="aside__blog-item aside-blog">
+      <figure class="aside-blog__img">
+        <?php if ( get_the_post_thumbnail() ) : ?>
+        <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>のアイキャッチ画像">
+        <?php else: ?>
+        <img src="<?php echo get_theme_file_uri(); ?>dist/assets/images/common/noimage.jpg" alt="noimage">
+        <?php endif; ?>
+      </figure>
+      <div class="aside-blog__body">
+        <time class="aside-blog__day" datetime="<?php the_time('c'); ?>"><?php the_time('Y.m/d'); ?></time>
+        <h3 class="aside-blog__title"><?php the_title(); ?></h3>
+      </div>
+    </a>
+
+    <?php endwhile; ?>
+    <?php wp_reset_postdata(); endif; ?>
+  </div>
+
+  <!-- 口コミ -->
+  <?php
+              $args = array('post_type' => 'voice',
+              'posts_per_page' => 1); 
+              $the_query = new WP_Query($args); if($the_query->have_posts()):
+          ?>
+  <div class="aside__content">
+    <div class="aside__title">
+      <h2>口コミ</h2>
+    </div>
+    <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+    <div class="aside__voice-item aside-voice">
+      <div class="aside-voice__item">
+        <figure class="aside-voice__img">
+          <?php if ( get_the_post_thumbnail() ) : ?>
+          <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>のアイキャッチ画像">
+          <?php else: ?>
+          <img src="<?php echo get_theme_file_uri(); ?>distdist/assets/images/common/noimage.jpg" alt="no image">
+          <?php endif; ?>
+        </figure>
+
+        <div class="aside-voice__info">
+          <span class="voice-card__age"><?php the_field('voice_1'); ?><?php the_field('('.'voice_2'.'
+                          )'); ?></span>
+          <h3 class="aside-voice__title">
+            <?php the_title(); ?>
+          </h3>
+        </div>
+      </div>
+    </div>
+    <?php endwhile; ?>
+    <?php wp_reset_postdata(); endif; ?>
+
+    <div class="aside__btn">
+      <a href="<?php echo $voice; ?>" class="btn">
+        View more
+        <span class="btn__arrow"></span>
+      </a>
+    </div>
+  </div>
+
+  <!-- キャンペーン -->
+  <?php
+              $args = array('post_type' => 'campaign',
+              'posts_per_page' => 2); 
+              $the_query = new WP_Query($args); if($the_query->have_posts()):
+            ?>
+  <div class="aside__content">
+    <div class="aside__title">
+      <h2>キャンペーン</h2>
+    </div>
+
+    <div class="aside__campaign-items">
+      <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+      <div class="aside__campaign-item campaign-card">
+        <figure class="campaign-card__img campaign-card__img--aside">
+          <?php if ( get_the_post_thumbnail() ) : ?>
+          <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>のアイキャッチ画像">
+          <?php else: ?>
+          <img src="<?php echo get_theme_file_uri(); ?>dist/assets/images/common/noimage.jpg" alt="noimage">
+          <?php endif; ?>
+        </figure>
+        <div class="campaign-card__body campaign-card__body--aside">
+          <div class="campaign-card__body-head">
+            <h3 class="campaign-card__title campaign-card__title--aside"><?php the_title(); ?></h3>
+          </div>
+          <p class="campaign-card__text campaign-card__text--aside">全部コミコミ(お一人様)</p>
+          <div class="campaign-card__price campaign-card__price--aside">
+            <div class="campaign-card__before-price">&yen;<?php the_field('campaign_price1'); ?></div>
+            <span
+              class="campaign-card__after-price campaign-card__after-price--aside">&yen;<?php the_field('campaign_price2'); ?></span>
+          </div>
+        </div>
+      </div>
+      <?php endwhile; ?>
+      <?php wp_reset_postdata(); endif; ?>
+    </div>
+
+    <div class="aside__btn">
+      <a href="<?php echo $campaign; ?>" class="btn">
+        View more
+        <span class="btn__arrow"></span>
+      </a>
+    </div>
+  </div>
+
+  <!-- 月別アーカイブ -->
+  <div class="aside__content">
+    <div class="aside__title">
+      <h2>アーカイブ</h2>
+    </div>
+    <div class="aside__archive aside-archive">
+      <div class="aside-archive__inner">
+
+        <?php
+$year_prev = null;
+$months = $wpdb->get_results("SELECT DISTINCT MONTH( post_date ) AS month ,
+                                    YEAR( post_date ) AS year,
+                                    COUNT( id ) as post_count FROM $wpdb->posts
+                                    WHERE post_status = 'publish' and post_date <= now( )
+                                    and post_type = 'post'
+                                    GROUP BY month , year
+                                    ORDER BY post_date DESC");
+
+$first = true; // 最初の要素かどうかを示すフラグ
+
+foreach($months as $month) :
+$year_current = $month->year;
+if ($year_current != $year_prev){
+  if ($year_prev != null){
+    ?>
+        </ul>
+      </div>
+      <?php
+  }
+  ?>
+      <div class="aside-archive__items js-archive-accordion <?php if ($first) echo 'open'; ?>">
+        <p><?php echo $month->year; ?></p>
+        <ul class="aside-archive__item">
+          <?php
+    $first = false; // 最初の要素が表示されたのでフラグを false に設定
+  }
+  ?>
+          <li>
+            <a
+              href="<?php bloginfo('url') ?>/<?php echo $month->year; ?>/<?php echo date("m", mktime(0, 0, 0, $month->month, 1, $month->year)) ?>">
+              <?php echo '▶︎&thinsp;'.date("n", mktime(0, 0, 0, $month->month, 1, $month->year)) ?>月
             </a>
-
-            <a href="#" class="aside__blog-item aside-blog">
-              <figure class="aside-blog__img">
-                <img src="./assets/images/common/blog-card2.jpg" alt="" />
-              </figure>
-              <div class="aside-blog__body">
-                <time class="aside-blog__day" datetime="2023-11-17">2023.11/17</time>
-                <h3 class="aside-blog__title">ウミガメと泳ぐ</h3>
-              </div>
-            </a>
-            <a href="#" class="aside__blog-item aside-blog">
-              <figure class="aside-blog__img">
-                <img src="./assets/images/common/blog-card3.jpg" alt="" />
-              </figure>
-              <div class="aside-blog__body">
-                <time class="aside-blog__day" datetime="2023-11-17">2023.11/17</time>
-                <h3 class="aside-blog__title">カクレクマノミ</h3>
-              </div>
-            </a>
-          </div>
-
-          <div class="aside__content">
-            <div class="aside__title">
-              <h2>口コミ</h2>
-            </div>
-
-            <div class="aside__voice-item aside-voice">
-              <div class="aside-voice__item">
-                <figure class="aside-voice__img">
-                  <img src="./assets/images/common/aside-voice.jpg" alt="" />
-                </figure>
-
-                <div class="aside-voice__info">
-                  <span class="aside-voice__age">30代(カップル)</span>
-                  <h3 class="aside-voice__title">
-                    ここにタイトルが入ります。ここにタイトル
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            <div class="aside__btn">
-              <a href="<?php echo $voice; ?>" class="btn">
-                View more
-                <span class="btn__arrow"></span>
-              </a>
-            </div>
-          </div>
-          <div class="aside__content">
-            <div class="aside__title">
-              <h2>キャンペーン</h2>
-            </div>
-
-            <div class="aside__campaign-items">
-              <div class="aside__campaign-item campaign-card">
-                <figure class="campaign-card__img campaign-card__img--aside">
-                  <img src="./assets/images/common/campaign1.jpg" alt="" />
-                </figure>
-                <div class="campaign-card__body campaign-card__body--aside">
-                  <div class="campaign-card__body-head">
-                    <h3 class="campaign-card__title campaign-card__title--aside">ライセンス取得</h3>
-                  </div>
-                  <p class="campaign-card__text campaign-card__text--aside">全部コミコミ(お一人様)</p>
-                  <div class="campaign-card__price campaign-card__price--aside">
-                    <div class="campaign-card__before-price">¥56,000</div>
-                    <span class="campaign-card__after-price campaign-card__after-price--aside">¥46,000</span>
-                  </div>
-                </div>
-              </div>
-              <div class="aside__campaign-item campaign-card">
-                <figure class="campaign-card__img campaign-card__img--aside">
-                  <img src="./assets/images/common/campaign1.jpg" alt="" />
-                </figure>
-                <div class="campaign-card__body campaign-card__body--aside">
-                  <div class="campaign-card__body-head">
-                    <h3 class="campaign-card__title campaign-card__title--aside">貸切体験ダイビング</h3>
-                  </div>
-                  <p class="campaign-card__text campaign-card__text--aside">全部コミコミ(お一人様)</p>
-                  <div class="campaign-card__price campaign-card__price--aside">
-                    <div class="campaign-card__before-price">¥24,000</div>
-                    <span class="campaign-card__after-price campaign-card__after-price--aside">¥18,000</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="aside__btn">
-              <a href="archive-campaign.html" class="btn">
-                View more
-                <span class="btn__arrow"></span>
-              </a>
-            </div>
-          </div>
-
-          <div class="aside__content">
-            <div class="aside__title">
-              <h2>アーカイブ</h2>
-            </div>
-            <div class="aside__archive aside-archive">
-              <div class="aside-archive__inner">
-                <div class="aside-archive__items js-archive-accordion open">
-                  <p>2023</p>
-                  <ul class="aside-archive__item">
-                    <li><a href="home.html">▶︎ 3月</a></li>
-                    <li><a href="home.html">▶︎ 2月</a></li>
-                    <li><a href="home.html">▶︎ 1月</a></li>
-                  </ul>
-                </div>
-                <div class="aside-archive__items js-archive-accordion">
-                  <p>2022</p>
-                  <ul class="aside-archive__item">
-                    <li><a href="home.html">▶︎ 3月</a></li>
-                    <li><a href="home.html">▶︎ 2月</a></li>
-                    <li><a href="home.html">▶︎ 1月</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </aside>
+          </li>
+          <?php $year_prev = $year_current;
+endforeach;
+?>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+</aside>

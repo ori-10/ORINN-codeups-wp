@@ -57,7 +57,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                   <?php if ( get_the_post_thumbnail() ) : ?>
                   <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>のアイキャッチ画像">
                   <?php else: ?>
-                  <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/noimage.jpg" alt="noimage">
+                  <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/noimage.jpg" alt="noimage">
                   <?php endif; ?>
                 </figure>
                 <div class="campaign-card__body campaign-card__body--sub-page">

@@ -49,7 +49,7 @@
               </p>
             </div>
             <div class="sub-information__img">
-              <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/sub-info1.jpg" alt="" />
+              <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/sub-info1.jpg" alt="" />
             </div>
           </li>
 
@@ -61,7 +61,7 @@
               </p>
             </div>
             <div class="sub-information__img">
-              <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/sub-info2.jpg" alt="" />
+              <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/sub-info2.jpg" alt="" />
             </div>
           </li>
 
@@ -73,7 +73,7 @@
               </p>
             </div>
             <div class="sub-information__img">
-              <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/sub-info3.jpg" alt="" />
+              <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/sub-info3.jpg" alt="" />
             </div>
           </li>
         </ul>

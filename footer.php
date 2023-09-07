@@ -1,4 +1,3 @@
-
 <?php
 $top = esc_url( home_url( '/' ) );
 $campaign = esc_url( home_url( '/campaign/' ) );
@@ -13,15 +12,17 @@ $termsofservise = esc_url( home_url( '/terms-of-service/' ) );
 $contact = esc_url( home_url( '/contact/' ) );
 $sitemap = esc_url( home_url( '/sitemap/' ) );
 ?>
-
-<?php if (!is_404()) : // 404ページではない場合にコンタクトセクションを表示 ?>
+<?php
+  if (!is_404() && !is_page('contact') && !is_page('thanks')) :
+    // 404ページ、'contact' ページ、'thanks' ページ以外でコンタクトセクション表示
+?>
 <section id="contact" class="contact top-contact">
   <div class="contact__inner inner">
     <div class="contact__box">
       <div class="contact__body">
         <div class="contact__logo">
           <div class="contact__img">
-            <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/CodeUps-green.svg" alt="" />
+            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/CodeUps-green.svg" alt="" />
           </div>
         </div>
         <div class="contact__info">
@@ -69,7 +70,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
   <div class="footer__inner inner">
     <div class="footer__head">
       <div class="footer__logo">
-        <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/CodeUps.svg" alt="CodeUps" />
+        <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/CodeUps.svg" alt="CodeUps" />
       </div>
       <?php
         // 現在のページURLを取得してURLエンコード
@@ -81,12 +82,12 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       <ul class="footer__link-items">
         <li class="footer__link-item1">
           <a target="_blank" href="<?php echo esc_url( 'https://ja-jp.facebook.com/' . $url_encode ); ?>">
-            <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/footer-face.png" alt="" />
+            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/footer-face.png" alt="" />
           </a>
         </li>
         <li class="footer__link-item2">
-          <a  target="_blank" href="<?php echo esc_url( 'https://www.instagram.com/' . $url_encode ); ?>">
-            <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/footer-insta.png" alt="" />
+          <a target="_blank" href="<?php echo esc_url( 'https://www.instagram.com/' . $url_encode ); ?>">
+            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/footer-insta.png" alt="" />
           </a>
         </li>
       </ul>
@@ -98,7 +99,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
           <li class="footer-nav__item-title">
             <a href="<?php echo $campaign; ?>">キャンペーン</a>
             <ul class="footer-nav__item">
-            <?php
+              <?php
               $terms = get_terms('campaign_category');
               foreach ( $terms as $term ) {
               echo '<li><a href="'.get_term_link($term).'">'.esc_html($term->name).'</a></li>';
