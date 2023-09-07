@@ -176,11 +176,17 @@ function custom_body_class($classes) {
 // フィルターフックにカスタム関数を登録
 add_filter('body_class', 'custom_body_class');
 
-// //全ての固定ページのエディタを非表示にする
-function my_remove_post_editor_support() { 
-	remove_post_type_support( 'page', 'editor' ); 
-}
-add_action('init', 'my_remove_post_editor_support');
+//全ての固定ページのエディタを非表示にする
+add_filter('use_block_editor_for_post',function($use_block_editor,$post){
+	if($post->post_type==='page'){
+		if(in_array($post->post_name,['contact','sitemap','information','blog','faq','price','about-us','thanks'])){ //ページスラッグが「about」または「company」ならコンテンツエディターを非表示
+			remove_post_type_support('page','editor');
+			return false;
+		}
+	}
+	return $use_block_editor;
+},10,2);
+
 
 //Contact Form 7 のカスタマイズ
 function filter_wpcf7_form_tag($scanned_tag, $replace) {

@@ -33,10 +33,10 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       <nav class="site-map__nav">
         <div class="site-map__wrap">
           <ul class="site-map__items">
-            <li class="site-map__item-title">                <a href="<?php echo $campaign; ?>">キャンペーン</a>
+            <li class="site-map__item-title"> <a href="<?php echo $campaign; ?>">キャンペーン</a>
 
               <ul class="site-map__item">
-              <?php
+                <?php
                   $terms = get_terms('campaign_category');
                   foreach ( $terms as $term ) {
                   echo '<li><a href="'.get_term_link($term).'">'.esc_html($term->name).'</a></li>';
@@ -45,12 +45,12 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
               </ul>
             </li>
 
-            <li class="site-map__item-title">                <a href="<?php echo $about; ?>">私たちについて</a>
+            <li class="site-map__item-title"> <a href="<?php echo $about; ?>">私たちについて</a>
 
             </li>
           </ul>
           <ul class="site-map__items">
-            <li class="site-map__item-title">               
+            <li class="site-map__item-title">
               <a href="<?php echo $information; ?>">ダイビング情報</a>
 
               <ul class="site-map__item">
@@ -60,41 +60,41 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
               </ul>
             </li>
             <li class="site-map__item-title">
-            <a href="<?php echo $blog; ?>">ブログ</a>
+              <a href="<?php echo $blog; ?>">ブログ</a>
             </li>
           </ul>
         </div>
 
         <div class="site-map__wrap site-map__wrap--space">
           <ul class="site-map__items">
-            <li class="site-map__item-title">                
+            <li class="site-map__item-title">
               <a href="<?php echo $voice; ?>">お客様の声</a>
             </li>
             <li class="site-map__item-title">
-            <a href="<?php echo $price; ?>">料金一覧</a>
+              <a href="<?php echo $price; ?>">料金一覧</a>
               <ul class="site-map__item">
-              <li><a href="<?php echo esc_url( home_url( '/price#price1' ) ); ?>">ライセンス講習</a></li>
-                  <li><a href="<?php echo esc_url( home_url( '/price#price2' ) ); ?>">体験ダイビング</a></li>
-                  <li><a href="<?php echo esc_url( home_url( '/price#price3' ) ); ?>">ファンダイビング</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/price#price1' ) ); ?>">ライセンス講習</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/price#price2' ) ); ?>">体験ダイビング</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/price#price3' ) ); ?>">ファンダイビング</a></li>
               </ul>
             </li>
           </ul>
           <ul class="site-map__items">
             <li class="site-map__item-title">
-            <a href="<?php echo $faq; ?>">よくある質問</a>
+              <a href="<?php echo $faq; ?>">よくある質問</a>
             </li>
             <li class="site-map__item-title site-map__item-title--br">
-                <a href="<?php echo $privacy; ?>">プライバシー<br  class="u-mobile"/>
+              <a href="<?php echo $privacy; ?>"><span>プライバシー</span><br class="u-mobile" />
                 <span>ポリシー</span></a>
             </li>
             <li class="site-map__item-title">
-                <a href="<?php echo $termsofservise; ?>">利用規約</a>
+              <a href="<?php echo $termsofservise; ?>">利用規約</a>
             </li>
             <li class="site-map__item-title">
-                <a href="<?php echo $contact; ?>">お問い合わせ</a>
+              <a href="<?php echo $contact; ?>">お問い合わせ</a>
             </li>
             <li class="site-map__item-title">
-                <a href="<?php echo $sitemap; ?>">サイトマップ</a>
+              <a href="<?php echo $sitemap; ?>">サイトマップ</a>
             </li>
           </ul>
         </div>
