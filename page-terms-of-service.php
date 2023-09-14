@@ -1,5 +1,8 @@
 <?php get_header(); ?>
-<!-- 下層ページのメインビュー -->
+
+<!-- ############################################ -->
+<!-- メインビュー -->
+<!-- ############################################ -->
 <div class="sub-mv js-mv-height">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
@@ -8,10 +11,16 @@
   </div>
 </div>
 
-<!-- パンくず -->
-<?php get_template_part('parts/breadcrumb') ?>
-
 <main>
+
+  <!-- ############################################ -->
+  <!-- パンくず -->
+  <!-- ############################################ -->
+  <?php get_template_part('parts/breadcrumb') ?>
+
+  <!-- ############################################ -->
+  <!-- 利用規約 -->
+  <!-- ############################################ -->
   <section id="terms-of-service" class="terms-of-service section-sub-terms-of-service">
     <div class="terms-of-service__inner inner">
       <?php if(have_posts()): while(have_posts()): the_post(); ?>

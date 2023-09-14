@@ -14,7 +14,9 @@ $contact = esc_url( home_url( '/contact/' ) );
 $sitemap = esc_url( home_url( '/sitemap/' ) );
 ?>
 
-<!-- 下層ページのメインビュー -->
+<!-- ############################################ -->
+<!-- メインビュー -->
+<!-- ############################################ -->
 <div class="sub-mv js-mv-height sub-mv--campaign">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
@@ -23,10 +25,16 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
   </div>
 </div>
 
-<!-- パンくず -->
-<?php get_template_part('parts/breadcrumb') ?>
-
 <main>
+
+  <!-- ############################################ -->
+  <!-- パンくず -->
+  <!-- ############################################ -->
+  <?php get_template_part('parts/breadcrumb') ?>
+
+  <!-- ############################################ -->
+  <!-- キャンペーン -->
+  <!-- ############################################ -->
   <div id="sub-campaign" class="sub-campaign section-sub-campaign">
     <div class="sub-campaign__inner inner">
 
@@ -47,10 +55,12 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
           ?>
 
         </ul>
+
         <div class="sub-campaign__contents tab-contents">
           <div class="tab__sub-page-inner">
+
             <div class="tab__sub-campaign campaign-cards">
-              <!-- ループ -->
+
               <?php if(have_posts()): while(have_posts()): the_post(); ?>
               <div class="campaign-cards__item campaign-card">
                 <figure class="campaign-card__img">
@@ -103,10 +113,14 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
 
             </div>
           </div>
+
+          <!-- ############################################ -->
           <!-- ページナビ -->
-          <div class="pagenavi">
+          <!-- ############################################ -->
+          <div class=" layout-pagenavi">
             <?php wp_pagenavi(); ?>
           </div>
+
         </div>
       </div>
     </div>

@@ -13,6 +13,10 @@ $termsofservise = esc_url( home_url( '/terms-of-service/' ) );
 $contact = esc_url( home_url( '/contact/' ) );
 $sitemap = esc_url( home_url( '/sitemap/' ) );
 ?>
+
+<!-- ############################################ -->
+<!-- メインビュー -->
+<!-- ############################################ -->
 <div class="mv js-mv-height">
   <div class="mv__inner">
     <div class="mv__img">
@@ -48,14 +52,15 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
     </div>
   </div>
 </div>
-<!-- /.top-mv-->
 <main>
 
+  <!-- ############################################ -->
+  <!-- キャンペーン -->
+  <!-- ############################################ -->
   <?php
     $args = array('post_type' => 'campaign',
     'posts_per_page' => -1); 
-    // 'post_status' => 'publish', // 公開済の投稿を指定
-    $the_query = new WP_Query($args); if($the_query->have_posts()):
+    $the_query = new WP_Query($args); 
   ?>
   <section id="campaign" class="campaign top-campaign">
     <div class="campaign__inner inner">
@@ -67,7 +72,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       <div class="campaign__cards campaign-cards">
         <div class="js-campaign-swiper campaign-cards__swiper swiper">
           <div class="swiper-wrapper">
-            <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+            <?php if($the_query->have_posts()): while ($the_query->have_posts()): $the_query->the_post(); ?>
             <div class="campaign-cards__swiper-slide swiper-slide">
               <div class="campaign-cards__item campaign-card">
                 <figure class="campaign-card__img">
@@ -119,6 +124,9 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
     </div>
   </section>
 
+  <!-- ############################################ -->
+  <!-- 私たちについて -->
+  <!-- ############################################ -->
   <section id="about" class="about top-about">
     <div class="about__inner inner">
       <div class="about__section-title section-title">
@@ -159,6 +167,9 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
     </div>
   </section>
 
+  <!-- ############################################ -->
+  <!-- ダイビング情報 -->
+  <!-- ############################################ -->
   <section id="information" class="information top-information">
     <div class="information__inner inner">
       <div class="information__section-title section-title">
@@ -186,10 +197,13 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
     </div>
   </section>
 
+  <!-- ############################################ -->
+  <!-- ブログ -->
+  <!-- ############################################ -->
   <?php
     $args = array('post_type' => 'post',
     'posts_per_page' => 3);  // カスタム投稿タイプ Products
-    $the_query = new WP_Query($args); if($the_query->have_posts()):
+    $the_query = new WP_Query($args); 
   ?>
   <section id="blog" class="blog top-blog">
     <div class="inner blog__inner">
@@ -199,7 +213,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       </div>
 
       <div class="blog__cards blog-cards">
-        <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+        <?php if($the_query->have_posts()): while ($the_query->have_posts()): $the_query->the_post(); ?>
         <a href="<?php the_permalink(); ?>" class="blog-cards__item blog-card">
           <figure class="blog-card__img">
             <?php if ( get_the_post_thumbnail() ) : ?>
@@ -229,11 +243,13 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
     </div>
   </section>
 
-
+  <!-- ############################################ -->
+  <!-- お客様の声 -->
+  <!-- ############################################ -->
   <?php
     $args = array('post_type' => 'voice',
     'posts_per_page' => 2); 
-    $the_query = new WP_Query($args); if($the_query->have_posts()):
+    $the_query = new WP_Query($args); 
   ?>
   <section id="voice" class="top-voice voice">
     <div class="voice__inner inner">
@@ -243,7 +259,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       </div>
 
       <div class="voice__cards voice-cards">
-        <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+        <?php if($the_query->have_posts()): while ($the_query->have_posts()): $the_query->the_post(); ?>
         <div class="voice-cards__item voice-card">
           <div class="voice-card__head">
             <div class="voice-card__info-wrap">
@@ -260,7 +276,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                   ?>
               </div>
               <h3 class="voice-card__title">
-                <?php the_title(); ?>
+                <?php the_field('voice_title'); ?>
               </h3>
             </div>
 
@@ -290,6 +306,9 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
     </div>
   </section>
 
+  <!-- ############################################ -->
+  <!-- 料金一覧 -->
+  <!-- ############################################ -->
   <section id="price" class="top-price price">
     <div class="price__inner inner">
       <div class="price__section-title section-title">
@@ -317,7 +336,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                     <?php echo $fields['course1']; ?>
                   </dt>
                   <dd>
-                    <?php echo $fields['price1']; ?>
+                    <?php echo '¥'.$fields['price1']; ?>
                   </dd>
                 </div>
                 <?php } ?>
@@ -335,7 +354,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                     <?php echo $fields['course2']; ?>
                   </dt>
                   <dd>
-                    <?php echo $fields['price2']; ?>
+                    <?php echo '¥'.$fields['price2']; ?>
                   </dd>
                 </div>
                 <?php } ?>
@@ -353,7 +372,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                     <?php echo $fields['course3']; ?>
                   </dt>
                   <dd>
-                    <?php echo $fields['price3']; ?>
+                    <?php echo '¥'.$fields['price3']; ?>
                   </dd>
                 </div>
                 <?php } ?>
@@ -371,7 +390,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                     <?php echo $fields['course4']; ?>
                   </dt>
                   <dd>
-                    <?php echo $fields['price4']; ?>
+                    <?php echo '¥'.$fields['price4']; ?>
                   </dd>
                 </div>
                 <?php } ?>

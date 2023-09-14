@@ -1,5 +1,8 @@
 <?php get_header(); ?>
+
+<!-- ############################################ -->
 <!-- 下層ページのメインビュー -->
+<!-- ############################################ -->
 <div class="sub-mv js-mv-height sub-mv--about">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
@@ -8,11 +11,16 @@
   </div>
 </div>
 
-<!-- パンくず -->
-<?php get_template_part('parts/breadcrumb') ?>
-
 <main>
 
+  <!-- ############################################ -->
+  <!-- パンくず -->
+  <!-- ############################################ -->
+  <?php get_template_part('parts/breadcrumb') ?>
+
+  <!-- ############################################ -->
+  <!-- 私たちについて -->
+  <!-- ############################################ -->
   <section id="sub-about" class="sub-about section-sub-about">
     <div class="sub-about__inner inner">
 
@@ -47,6 +55,9 @@
     </div>
   </section>
 
+  <!-- ############################################ -->
+  <!-- ギャラリー -->
+  <!-- ############################################ -->
   <section id="gallery" class="gallery section-sub-gallery">
     <div class="gallery__inner inner">
 
@@ -59,8 +70,8 @@
         <ul class="gallery__items">
 
           <?php
-            $repeat_item = SCF::get('gallery');
-            foreach ($repeat_item as $fields ) {
+            $repeat_item = SCF::get_option_meta('theme-options-gallery', 'gallery');
+            foreach ($repeat_item as $fields) {
             $image_url = wp_get_attachment_image_src($fields['about-img'] , 'full');
           ?>
           <li class="gallery__item js-modal">

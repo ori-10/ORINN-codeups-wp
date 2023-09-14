@@ -13,6 +13,10 @@ $termsofservise = esc_url( home_url( '/terms-of-service/' ) );
 $contact = esc_url( home_url( '/contact/' ) );
 $sitemap = esc_url( home_url( '/sitemap/' ) );
 ?>
+
+<!-- ############################################ -->
+<!-- メインビュー -->
+<!-- ############################################ -->
 <div class="mv js-mv-height">
   <div class="mv__inner">
     <div class="mv__img">
@@ -20,24 +24,57 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
         <div class="swiper-container js-mv-swiper">
           <div class="swiper-wrapper">
             <?php
-              $repeat_item = SCF::get('mv-img');
-              foreach ($repeat_item as $fields ) {
-              $image_url_first = wp_get_attachment_image_src($fields['mv-img1'] , 'full');
-              $image_url_second = wp_get_attachment_image_src($fields['mv-img2'] , 'full');
-            ?>
+$group_name = get_field('group1');	
+if( $group_name ): ?>
             <div class="swiper-slide">
               <div class="mv__slide-img">
                 <picture>
-                  <source media="(min-width: 768px)" srcset="<?php echo $image_url_first[0]; ?>"
-                    width="<?php echo $image_url_first[1]; ?>" height="<?php echo $image_url_first[2]; ?>"
-                    alt="<?php echo $fields["mv-img-alt"]; ?>">
-                  <img src="<?php echo $image_url_second[0]; ?>" width="<?php echo $image_url_second[1]; ?>"
-                    height="<?php echo $image_url_second[2]; ?>" alt="<?php echo $fields["mv-img-alt"]; ?>">
+                  <source media="(min-width: 768px)" srcset="<?php echo $group_name['mv_img1']; ?>"
+                    alt="<?php echo $group_name['mv_img_alt']; ?>">
+                  <img src="<?php echo $group_name['mv_img2']; ?>" alt="<?php echo $group_name['mv_img_alt']; ?>">
                 </picture>
               </div>
             </div>
-
-            <?php } ?>
+            <?php endif; ?>
+            <?php
+$group_name = get_field('group2');	
+if( $group_name ): ?>
+            <div class="swiper-slide">
+              <div class="mv__slide-img">
+                <picture>
+                  <source media="(min-width: 768px)" srcset="<?php echo $group_name['mv_img1']; ?>"
+                    alt="<?php echo $group_name['mv_img_alt']; ?>">
+                  <img src="<?php echo $group_name['mv_img2']; ?>" alt="<?php echo $group_name['mv_img_alt']; ?>">
+                </picture>
+              </div>
+            </div>
+            <?php endif; ?>
+            <?php
+$group_name = get_field('group3');	
+if( $group_name ): ?>
+            <div class="swiper-slide">
+              <div class="mv__slide-img">
+                <picture>
+                  <source media="(min-width: 768px)" srcset="<?php echo $group_name['mv_img1']; ?>"
+                    alt="<?php echo $group_name['mv_img_alt']; ?>">
+                  <img src="<?php echo $group_name['mv_img2']; ?>" alt="<?php echo $group_name['mv_img_alt']; ?>">
+                </picture>
+              </div>
+            </div>
+            <?php endif; ?>
+            <?php
+$group_name = get_field('group4');	
+if( $group_name ): ?>
+            <div class="swiper-slide">
+              <div class="mv__slide-img">
+                <picture>
+                  <source media="(min-width: 768px)" srcset="<?php echo $group_name['mv_img1']; ?>"
+                    alt="<?php echo $group_name['mv_img_alt']; ?>">
+                  <img src="<?php echo $group_name['mv_img2']; ?>" alt="<?php echo $group_name['mv_img_alt']; ?>">
+                </picture>
+              </div>
+            </div>
+            <?php endif; ?>
           </div>
         </div>
       </div>
@@ -48,14 +85,15 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
     </div>
   </div>
 </div>
-<!-- /.top-mv-->
 <main>
 
+  <!-- ############################################ -->
+  <!-- キャンペーン -->
+  <!-- ############################################ -->
   <?php
     $args = array('post_type' => 'campaign',
     'posts_per_page' => -1); 
-    // 'post_status' => 'publish', // 公開済の投稿を指定
-    $the_query = new WP_Query($args); if($the_query->have_posts()):
+    $the_query = new WP_Query($args); 
   ?>
   <section id="campaign" class="campaign top-campaign">
     <div class="campaign__inner inner">
@@ -67,7 +105,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       <div class="campaign__cards campaign-cards">
         <div class="js-campaign-swiper campaign-cards__swiper swiper">
           <div class="swiper-wrapper">
-            <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+            <?php if($the_query->have_posts()): while ($the_query->have_posts()): $the_query->the_post(); ?>
             <div class="campaign-cards__swiper-slide swiper-slide">
               <div class="campaign-cards__item campaign-card">
                 <figure class="campaign-card__img">
@@ -119,6 +157,9 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
     </div>
   </section>
 
+  <!-- ############################################ -->
+  <!-- 私たちについて -->
+  <!-- ############################################ -->
   <section id="about" class="about top-about">
     <div class="about__inner inner">
       <div class="about__section-title section-title">
@@ -159,6 +200,9 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
     </div>
   </section>
 
+  <!-- ############################################ -->
+  <!-- ダイビング情報 -->
+  <!-- ############################################ -->
   <section id="information" class="information top-information">
     <div class="information__inner inner">
       <div class="information__section-title section-title">
@@ -186,10 +230,14 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
     </div>
   </section>
 
+
+  <!-- ############################################ -->
+  <!-- ブログ -->
+  <!-- ############################################ -->
   <?php
     $args = array('post_type' => 'post',
     'posts_per_page' => 3);  // カスタム投稿タイプ Products
-    $the_query = new WP_Query($args); if($the_query->have_posts()):
+    $the_query = new WP_Query($args); 
   ?>
   <section id="blog" class="blog top-blog">
     <div class="inner blog__inner">
@@ -199,7 +247,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       </div>
 
       <div class="blog__cards blog-cards">
-        <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+        <?php if($the_query->have_posts()): while ($the_query->have_posts()): $the_query->the_post(); ?>
         <a href="<?php the_permalink(); ?>" class="blog-cards__item blog-card">
           <figure class="blog-card__img">
             <?php if ( get_the_post_thumbnail() ) : ?>
@@ -229,11 +277,13 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
     </div>
   </section>
 
-
+  <!-- ############################################ -->
+  <!-- お客様の声 -->
+  <!-- ############################################ -->
   <?php
     $args = array('post_type' => 'voice',
     'posts_per_page' => 2); 
-    $the_query = new WP_Query($args); if($the_query->have_posts()):
+    $the_query = new WP_Query($args); 
   ?>
   <section id="voice" class="top-voice voice">
     <div class="voice__inner inner">
@@ -243,7 +293,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       </div>
 
       <div class="voice__cards voice-cards">
-        <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+        <?php if($the_query->have_posts()): while ($the_query->have_posts()): $the_query->the_post(); ?>
         <div class="voice-cards__item voice-card">
           <div class="voice-card__head">
             <div class="voice-card__info-wrap">
@@ -260,7 +310,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                   ?>
               </div>
               <h3 class="voice-card__title">
-                <?php the_title(); ?>
+                <?php the_field('voice_title'); ?>
               </h3>
             </div>
 
@@ -290,6 +340,9 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
     </div>
   </section>
 
+  <!-- ############################################ -->
+  <!-- 料金一覧 -->
+  <!-- ############################################ -->
   <section id="price" class="top-price price">
     <div class="price__inner inner">
       <div class="price__section-title section-title">
@@ -309,7 +362,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
               <h3 class="price__item-title">ライセンス講習</h3>
               <dl class="price__list-item">
                 <?php
-                  $repeat_item = SCF::get('license', 12 );
+                  $repeat_item = SCF::get_option_meta('theme-options-pricing', 'license');
                   foreach ($repeat_item as $fields) { 
                 ?>
                 <div>
@@ -327,7 +380,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
               <h3 class="price__item-title">体験ダイビング</h3>
               <dl class="price__list-item">
                 <?php
-                  $repeat_item = SCF::get('experience', 12 );
+                  $repeat_item = SCF::get_option_meta('theme-options-pricing', 'experience');
                   foreach ($repeat_item as $fields) { 
                 ?>
                 <div>
@@ -345,7 +398,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
               <h3 class="price__item-title">ファンダイビング</h3>
               <dl class="price__list-item">
                 <?php
-                  $repeat_item = SCF::get('fun', 12 );
+                  $repeat_item = SCF::get_option_meta('theme-options-pricing', 'fun');
                   foreach ($repeat_item as $fields) { 
                 ?>
                 <div>
@@ -363,7 +416,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
               <h3 class="price__item-title">スペシャルダイビング</h3>
               <dl class="price__list-item">
                 <?php
-                  $repeat_item = SCF::get('special', 12 );
+                  $repeat_item = SCF::get_option_meta('theme-options-pricing','special');
                   foreach ($repeat_item as $fields) { 
                 ?>
                 <div>

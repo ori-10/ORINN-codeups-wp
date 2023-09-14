@@ -14,7 +14,9 @@ $contact = esc_url( home_url( '/contact/' ) );
 $sitemap = esc_url( home_url( '/sitemap/' ) );
 ?>
 
-<!-- 下層ページのメインビュー -->
+<!-- ############################################ -->
+<!-- メインビュー -->
+<!-- ############################################ -->
 <div class="sub-mv js-mv-height sub-mv--blog">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
@@ -23,24 +25,22 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
   </div>
 </div>
 
-<!-- パンくず -->
-<?php get_template_part('parts/breadcrumb') ?>
-
 <main>
+
+  <!-- ############################################ -->
+  <!-- パンくず -->
+  <!-- ############################################ -->
+  <?php get_template_part('parts/breadcrumb') ?>
+
+  <!-- ############################################ -->
+  <!-- ブログ -->
+  <!-- ############################################ -->
   <?php if(have_posts()): while(have_posts()): the_post(); ?>
   <?php
-        //ログインユーザーとクローラーを除く
-        if( !is_user_logged_in() && !is_bot() ) {
-
-          //フィールド「PV」の現在の値を取得
-          $pv = get_field('pv');
-          //PVの値に1を追加
-          $pv++;
-          //フィールド「PV」の内容を上書き
-          update_field('pv', $pv);
-          
-          }
-        ?>
+  if( !is_user_logged_in() && !is_bot() ) { //クローラーとログイン時のアクセスをカウントから除外
+    setPostViews( get_the_ID() );
+  }
+?>
   <div id="sub-blog" class="sub-blog section-sub-blog">
     <div class="inner sub-blog__inner sub-blog__inner--article">
       <div class="sub-blog__main">
@@ -61,10 +61,8 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
           </div>
         </article>
 
-
-        <div class="pagination">
+        <div class="pagination layout-pagination">
           <div class="pagination__inner">
-
 
             <?php
             $prev = get_previous_post();

@@ -14,7 +14,9 @@ $contact = esc_url( home_url( '/contact/' ) );
 $sitemap = esc_url( home_url( '/sitemap/' ) );
 ?>
 
+<!-- ############################################ -->
 <!-- 下層ページのメインビュー -->
+<!-- ############################################ -->
 <div class="sub-mv js-mv-height sub-mv--blog">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
@@ -23,10 +25,12 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
   </div>
 </div>
 
-<!-- パンくず -->
-<?php get_template_part('parts/breadcrumb') ?>
-
 <main>
+
+  <!-- ############################################ -->
+  <!-- パンくず -->
+  <!-- ############################################ -->
+  <?php get_template_part('parts/breadcrumb') ?>
   <div id="sub-blog" class="sub-blog section-sub-blog">
     <div class="sub-blog__inner inner">
       <div class="sub-blog__main">
@@ -52,7 +56,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
           </article>
           <?php endwhile; endif; ?>
         </div>
-        <div class="pagenavi">
+        <div class="pagenavi layout-pagenavi">
           <?php wp_pagenavi(); ?>
         </div>
       </div>

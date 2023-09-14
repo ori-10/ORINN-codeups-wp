@@ -12,6 +12,10 @@ $termsofservise = esc_url( home_url( '/terms-of-service/' ) );
 $contact = esc_url( home_url( '/contact/' ) );
 $sitemap = esc_url( home_url( '/sitemap/' ) );
 ?>
+
+<!-- ############################################ -->
+<!-- お問い合わせ -->
+<!-- ############################################ -->
 <?php
   if (!is_404() && !is_page('contact') && !is_page('thanks')) :
     // 404ページ、'contact' ページ、'thanks' ページ以外でコンタクトセクション表示
@@ -59,36 +63,62 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
   </div>
 </section>
 <?php endif; ?>
+
+<!-- ############################################ -->
+<!-- ページトップ -->
+<!-- ############################################ -->
 <div id="page-top" class="page-top js-page-top">
   <a href="#">
     <span class="arrow-top"></span>
   </a>
 </div>
-<!-- /.page-top -->
+
 </main>
+
+<!-- ############################################ -->
+<!-- フッター -->
+<!-- ############################################ -->
 <footer id="footer" class="footer section-footer">
   <div class="footer__inner inner">
     <div class="footer__head">
       <div class="footer__logo">
         <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/CodeUps.svg" alt="CodeUps" />
       </div>
-      <?php
-        // 現在のページURLを取得してURLエンコード
-        $url_encode = urlencode( get_permalink() );
-        // 現在のページのタイトルを取得してURLエンコード
-        $title_encode = urlencode( get_the_title() );
-      ?>
 
       <ul class="footer__link-items">
         <li class="footer__link-item1">
-          <a target="_blank" href="<?php echo esc_url( 'https://ja-jp.facebook.com/' . $url_encode ); ?>">
-            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/footer-face.png" alt="" />
-          </a>
+          <?php
+// ユーザー情報のIDを取得
+$user_id = get_current_user_id();
+
+// ACFのフィールドから情報を取得
+$group = get_field('sns_1', 'user_' . $user_id);
+if ($group && !empty($group['sns_icon'])) {
+    $icon = $group['sns_icon'];
+    $url = $group['sns_url'];
+    $name = $group['sns_name'];
+    echo '<a target="_blank" href="' . $url . '">';
+    echo '<img src="' . $icon . '" alt="' . $name . '" />';
+    echo '</a>';
+}
+?>
         </li>
         <li class="footer__link-item2">
-          <a target="_blank" href="<?php echo esc_url( 'https://www.instagram.com/' . $url_encode ); ?>">
-            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/footer-insta.png" alt="" />
-          </a>
+          <?php
+// ユーザー情報のIDを取得
+$user_id = get_current_user_id();
+
+// ACFのフィールドから情報を取得
+$group = get_field('sns_2', 'user_' . $user_id);
+if ($group && !empty($group['sns_icon'])) {
+    $icon = $group['sns_icon'];
+    $url = $group['sns_url'];
+    $name = $group['sns_name'];
+    echo '<a target="_blank" href="' . $url . '">';
+    echo '<img src="' . $icon . '" alt="' . $name . '" />';
+    echo '</a>';
+}
+?>
         </li>
       </ul>
     </div>

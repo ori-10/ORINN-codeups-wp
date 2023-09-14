@@ -13,7 +13,10 @@ $termsofservise = esc_url( home_url( '/terms-of-service/' ) );
 $contact = esc_url( home_url( '/contact/' ) );
 $sitemap = esc_url( home_url( '/sitemap/' ) );
 ?>
+
+<!-- ############################################ -->
 <!-- 下層ページのメインビュー -->
+<!-- ############################################ -->
 <div class="sub-mv sub-mv--voice js-mv-height">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
@@ -21,12 +24,12 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
     </div>
   </div>
 </div>
-
-<!-- パンくず -->
-<?php get_template_part('parts/breadcrumb') ?>
-
 <main>
 
+  <!-- ############################################ -->
+  <!-- パンくず -->
+  <!-- ############################################ -->
+  <?php get_template_part('parts/breadcrumb') ?>
   <div id="sub-voice" class="sub-voice section-sub-voice">
     <div class="sub-voice__inner inner">
 
@@ -47,10 +50,12 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
 
         </ul>
 
+        <!-- ############################################ -->
+        <!-- voice/お客様の声 -->
+        <!-- ############################################ -->
         <div class="voice-tab__container sub-voice__contents tab-contents">
           <div class="voice-tab__content">
             <div class="voice-tab__content-cards voice-cards">
-              <!-- ループ -->
 
               <?php if(have_posts()): while(have_posts()): the_post(); ?>
               <div class="voice-cards__item voice-card">
@@ -69,7 +74,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                       ?>
                     </div>
                     <h3 class="voice-card__title">
-                      <?php the_title(); ?>
+                      <?php the_field('voice_title'); ?>
                     </h3>
                   </div>
 
@@ -90,10 +95,14 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
 
             </div>
           </div>
+
+          <!-- ############################################ -->
           <!-- ページナビ -->
-          <div class="pagenavi">
+          <!-- ############################################ -->
+          <div class="pagenavi layout-pagenavi">
             <?php wp_pagenavi(); ?>
           </div>
+
         </div>
       </div>
 

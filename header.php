@@ -25,6 +25,10 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
 
 <body <?php body_class(); ?>>
   <?php wp_body_open(); ?>
+
+  <!-- ############################################ -->
+  <!-- ローディング -->
+  <!-- ############################################ -->
   <div id=" loading" class="loading">
     <div class="loading__inner">
       <div class="loading__title mv-title fadeUp">

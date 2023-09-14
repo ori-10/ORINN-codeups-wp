@@ -1,5 +1,8 @@
 <?php get_header(); ?>
-<!-- 下層ページのメインビュー -->
+
+<!-- ############################################ -->
+<!-- メインビュー -->
+<!-- ############################################ -->
 <div class="sub-mv js-mv-height sub-mv--price">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
@@ -8,10 +11,16 @@
   </div>
 </div>
 
-<!-- パンくず -->
-<?php get_template_part('parts/breadcrumb') ?>
-
 <main>
+
+  <!-- ############################################ -->
+  <!-- パンくず -->
+  <!-- ############################################ -->
+  <?php get_template_part('parts/breadcrumb') ?>
+
+  <!-- ############################################ -->
+  <!-- 料金表 -->
+  <!-- ############################################ -->
   <div id="sub-price" class="sub-price section-sub-price">
     <div class="sub-price__inner inner">
 
@@ -24,7 +33,7 @@
           </h3>
           <dl class="chart__item">
             <?php
-                  $repeat_item = SCF::get('license');
+                  $repeat_item = SCF::get_option_meta('theme-options-pricing' ,'license');
                   foreach ($repeat_item as $fields) { 
                 ?>
             <div>
@@ -46,7 +55,7 @@
           </h3>
           <dl class="chart__item">
             <?php
-                  $repeat_item = SCF::get('experience');
+                  $repeat_item = SCF::get_option_meta('theme-options-pricing', 'experience');
                   foreach ($repeat_item as $fields) { 
                 ?>
             <div>
@@ -68,7 +77,7 @@
           </h3>
           <dl class="chart__item">
             <?php
-                  $repeat_item = SCF::get('fun');
+                  $repeat_item = SCF::get_option_meta('theme-options-pricing', 'fun');
                   foreach ($repeat_item as $fields) { 
                 ?>
             <div>
@@ -90,7 +99,7 @@
           </h3>
           <dl class="chart__item">
             <?php
-                  $repeat_item = SCF::get('special');
+                  $repeat_item = SCF::get_option_meta('theme-options-pricing','special');
                   foreach ($repeat_item as $fields) { 
                 ?>
             <div>

@@ -13,32 +13,35 @@ $contact = esc_url( home_url( '/contact/' ) );
 $sitemap = esc_url( home_url( '/sitemap/' ) );
 ?>
 
-<!-- blog人気記事 -->
+<!-- ############################################ -->
+<!-- ブログ/人気記事 -->
+<!-- ############################################ -->
 <aside class="aside">
   <div class="aside__content">
     <div class="aside__title">
       <h2>人気記事</h2>
     </div>
     <?php
+setPostViews(get_the_ID());
 $args = array(
-  'posts_per_page' => 3,
-  'post_type' => 'post',
-  'post_status' => 'publish',
-  'orderby' => 'meta_value',
-  'meta_key' => 'pv'
+    'meta_key' => 'post_views_count',
+    'orderby' => 'meta_value_num',
+    'posts_per_page' => 3,
+    'order' => 'DESC',
 );
 
-$the_query = new WP_Query($args);
-if( $the_query->have_posts() ) :
-  ?>
-    <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+$custom_query = new WP_Query($args);
+
+if ($custom_query->have_posts()) :
+    while ($custom_query->have_posts()) : $custom_query->the_post();
+?>
 
     <a href="<?php the_permalink(); ?>" class="aside__blog-item aside-blog">
       <figure class="aside-blog__img">
-        <?php if ( get_the_post_thumbnail() ) : ?>
+        <?php if (has_post_thumbnail()) : ?>
         <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>のアイキャッチ画像">
-        <?php else: ?>
-        <img src="<?php echo get_theme_file_uri(); ?>dist/assets/images/common/noimage.jpg" alt="noimage">
+        <?php else : ?>
+        <img src="<?php echo get_theme_file_uri('dist/assets/images/common/noimage.jpg'); ?>" alt="noimage">
         <?php endif; ?>
       </figure>
       <div class="aside-blog__body">
@@ -47,21 +50,23 @@ if( $the_query->have_posts() ) :
       </div>
     </a>
 
-    <?php endwhile; ?>
-    <?php wp_reset_postdata(); endif; ?>
+    <?php endwhile; wp_reset_postdata(); endif; ?>
   </div>
 
-  <!-- 口コミ -->
+
+  <!-- ############################################ -->
+  <!-- お客様の声/口コミ -->
+  <!-- ############################################ -->
   <?php
               $args = array('post_type' => 'voice',
               'posts_per_page' => 1); 
-              $the_query = new WP_Query($args); if($the_query->have_posts()):
+              $the_query = new WP_Query($args); 
           ?>
   <div class="aside__content">
     <div class="aside__title">
       <h2>口コミ</h2>
     </div>
-    <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+    <?php if($the_query->have_posts()): while ($the_query->have_posts()): $the_query->the_post(); ?>
     <div class="aside__voice-item aside-voice">
       <div class="aside-voice__item">
         <figure class="aside-voice__img">
@@ -76,7 +81,7 @@ if( $the_query->have_posts() ) :
           <span class="voice-card__age"><?php the_field('voice_1'); ?><?php the_field('('.'voice_2'.'
                           )'); ?></span>
           <h3 class="aside-voice__title">
-            <?php the_title(); ?>
+            <?php the_field('voice_title'); ?>
           </h3>
         </div>
       </div>
@@ -92,11 +97,13 @@ if( $the_query->have_posts() ) :
     </div>
   </div>
 
+  <!-- ############################################ -->
   <!-- キャンペーン -->
+  <!-- ############################################ -->
   <?php
               $args = array('post_type' => 'campaign',
               'posts_per_page' => 2); 
-              $the_query = new WP_Query($args); if($the_query->have_posts()):
+              $the_query = new WP_Query($args); 
             ?>
   <div class="aside__content">
     <div class="aside__title">
@@ -104,7 +111,7 @@ if( $the_query->have_posts() ) :
     </div>
 
     <div class="aside__campaign-items">
-      <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+      <?php if($the_query->have_posts()): while ($the_query->have_posts()): $the_query->the_post(); ?>
       <div class="aside__campaign-item campaign-card">
         <figure class="campaign-card__img campaign-card__img--aside">
           <?php if ( get_the_post_thumbnail() ) : ?>
@@ -137,7 +144,9 @@ if( $the_query->have_posts() ) :
     </div>
   </div>
 
-  <!-- 月別アーカイブ -->
+  <!-- ############################################ -->
+  <!-- ブログ/月別アーカイブ -->
+  <!-- ############################################ -->
   <div class="aside__content">
     <div class="aside__title">
       <h2>アーカイブ</h2>

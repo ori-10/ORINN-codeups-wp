@@ -1,5 +1,8 @@
 <?php get_header(); ?>
-<!-- 下層ページのメインビュー -->
+
+<!-- ############################################ -->
+<!-- メインビュー -->
+<!-- ############################################ -->
 <div class="sub-mv js-mv-height sub-mv--thanks-page">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
@@ -8,10 +11,16 @@
   </div>
 </div>
 
-<!-- パンくず -->
-<?php get_template_part('parts/breadcrumb') ?>
-
 <main>
+
+  <!-- ############################################ -->
+  <!-- パンくず -->
+  <!-- ############################################ -->
+  <?php get_template_part('parts/breadcrumb') ?>
+
+  <!-- ############################################ -->
+  <!-- メインビュー -->
+  <!-- ############################################ -->
   <div id="thanks-page" class="thanks-page section-sub-thanks-page">
     <div class="thanks-page__inner inner">
       <p class="thanks-page__text">
@@ -26,12 +35,15 @@
     </div>
   </div>
 
+  <!-- ############################################ -->
+  <!-- ページトップ -->
+  <!-- ############################################ -->
   <div id="page-top" class="page-top js-page-top">
     <a href="#">
       <span class="arrow-top"></span>
     </a>
   </div>
-  <!-- /.page-top -->
+
 </main>
 
 <?php get_footer(); ?>

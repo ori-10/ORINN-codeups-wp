@@ -1,5 +1,8 @@
 <?php get_header(); ?>
-<!-- 下層ページのメインビュー -->
+
+<!-- ############################################ -->
+<!-- メインビュー -->
+<!-- ############################################ -->
 <div class="sub-mv js-mv-height sub-mv--information">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
@@ -8,14 +11,19 @@
   </div>
 </div>
 
-<!-- パンくず -->
-<?php get_template_part('parts/breadcrumb') ?>
-
 <main>
+
+  <!-- ############################################ -->
+  <!-- パンくず -->
+  <!-- ############################################ -->
+  <?php get_template_part('parts/breadcrumb') ?>
+
+  <!-- ############################################ -->
+  <!-- ダイビング情報 -->
+  <!-- ############################################ -->
   <section id="sub-information" class="sub-information section-sub-information">
     <div class="sub-information__inner inner">
       <div class="sub-information__contents">
-        <!-- ループ -->
         <ul class="sub-information__tab js-tab-info">
           <li class="sub-information__tab-label">
             <a href="#info1">

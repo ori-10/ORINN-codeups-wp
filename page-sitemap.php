@@ -14,7 +14,9 @@ $contact = esc_url( home_url( '/contact/' ) );
 $sitemap = esc_url( home_url( '/sitemap/' ) );
 ?>
 
-<!-- 下層ページのメインビュー -->
+<!-- ############################################ -->
+<!-- メインビュー -->
+<!-- ############################################ -->
 <div class="sub-mv js-mv-height">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
@@ -23,10 +25,15 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
   </div>
 </div>
 
-<!-- パンくず -->
-<?php get_template_part('parts/breadcrumb') ?>
-
 <main>
+  <!-- ############################################ -->
+  <!-- パンくず -->
+  <!-- ############################################ -->
+  <?php get_template_part('parts/breadcrumb') ?>
+
+  <!-- ############################################ -->
+  <!-- サイトマップ -->
+  <!-- ############################################ -->
   <div id="site-map" class="site-map section-sub-site-map">
     <div class="site-map__inner inner">
 

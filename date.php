@@ -14,19 +14,28 @@ $contact = esc_url( home_url( '/contact/' ) );
 $sitemap = esc_url( home_url( '/sitemap/' ) );
 ?>
 
+<!-- ############################################ -->
 <!-- 下層ページのメインビュー -->
+<!-- ############################################ -->
 <div class="sub-mv js-mv-height sub-mv--blog">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
-      <h2>Blog</h2>
+      <?php 
+      echo "<h2>" . get_the_archive_title() . "</h2>"; ?>
     </div>
   </div>
 </div>
 
-<!-- パンくず -->
-<?php get_template_part('parts/breadcrumb') ?>
-
 <main>
+
+  <!-- ############################################ -->
+  <!-- パンくず -->
+  <!-- ############################################ -->
+  <?php get_template_part('parts/breadcrumb') ?>
+
+  <!-- ############################################ -->
+  <!-- ブログ -->
+  <!-- ############################################ -->
   <div id="sub-blog" class="sub-blog section-sub-blog">
     <div class="sub-blog__inner inner">
       <div class="sub-blog__main">
@@ -52,7 +61,10 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
           </article>
           <?php endwhile; endif; ?>
         </div>
-        <div class="pagenavi">
+        <!-- ############################################ -->
+        <!-- ページナビ -->
+        <!-- ############################################ -->
+        <div class="pagenavi layout-pagenavi">
           <?php wp_pagenavi(); ?>
         </div>
       </div>
@@ -60,6 +72,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       <div class="sub-blog__aside">
         <?php get_sidebar(); ?>
       </div>
+
     </div>
   </div>
 
