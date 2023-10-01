@@ -6,7 +6,7 @@
 <div class="sub-mv js-mv-height sub-mv--information">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
-      <h2>Information</h2>
+      <h1>Information</h1>
     </div>
   </div>
 </div>

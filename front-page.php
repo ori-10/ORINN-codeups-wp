@@ -24,8 +24,8 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
         <div class="swiper-container js-mv-swiper">
           <div class="swiper-wrapper">
             <?php
-$group_name = get_field('group1');	
-if( $group_name ): ?>
+              $group_name = get_field('group1');	
+              if( $group_name ): ?>
             <div class="swiper-slide">
               <div class="mv__slide-img">
                 <picture>
@@ -37,8 +37,8 @@ if( $group_name ): ?>
             </div>
             <?php endif; ?>
             <?php
-$group_name = get_field('group2');	
-if( $group_name ): ?>
+              $group_name = get_field('group2');	
+              if( $group_name ): ?>
             <div class="swiper-slide">
               <div class="mv__slide-img">
                 <picture>
@@ -50,8 +50,8 @@ if( $group_name ): ?>
             </div>
             <?php endif; ?>
             <?php
-$group_name = get_field('group3');	
-if( $group_name ): ?>
+              $group_name = get_field('group3');	
+              if( $group_name ): ?>
             <div class="swiper-slide">
               <div class="mv__slide-img">
                 <picture>
@@ -63,8 +63,8 @@ if( $group_name ): ?>
             </div>
             <?php endif; ?>
             <?php
-$group_name = get_field('group4');	
-if( $group_name ): ?>
+              $group_name = get_field('group4');	
+              if( $group_name ): ?>
             <div class="swiper-slide">
               <div class="mv__slide-img">
                 <picture>
@@ -135,8 +135,7 @@ if( $group_name ): ?>
                 </div>
               </div>
             </div>
-            <?php endwhile; ?>
-            <?php wp_reset_postdata(); endif; ?>
+            <?php endwhile; wp_reset_postdata(); endif; ?>
           </div>
         </div>
         <div class="campaign__arrow-btn swiper-button-next">
@@ -264,8 +263,7 @@ if( $group_name ): ?>
             </div>
           </div>
         </a>
-        <?php endwhile; ?>
-        <?php wp_reset_postdata(); endif; ?>
+        <?php endwhile; wp_reset_postdata(); endif; ?>
 
       </div>
       <div class="blog__btn">
@@ -326,8 +324,7 @@ if( $group_name ): ?>
             <?php the_excerpt(); ?>
           </div>
         </div>
-        <?php endwhile; ?>
-        <?php wp_reset_postdata(); endif; ?>
+        <?php endwhile; wp_reset_postdata(); endif; ?>
 
       </div>
 
@@ -363,7 +360,7 @@ if( $group_name ): ?>
               <dl class="price__list-item">
                 <?php
                   $repeat_item = SCF::get_option_meta('theme-options-pricing', 'license');
-                  foreach ($repeat_item as $fields) { 
+                  foreach ($repeat_item as $fields): 
                 ?>
                 <div>
                   <dt>
@@ -373,7 +370,7 @@ if( $group_name ): ?>
                     <?php echo '¥'.$fields['price1']; ?>
                   </dd>
                 </div>
-                <?php } ?>
+                <?php endforeach; ?>
               </dl>
             </li>
             <li class="price__list-items">
@@ -381,7 +378,7 @@ if( $group_name ): ?>
               <dl class="price__list-item">
                 <?php
                   $repeat_item = SCF::get_option_meta('theme-options-pricing', 'experience');
-                  foreach ($repeat_item as $fields) { 
+                  foreach ($repeat_item as $fields): 
                 ?>
                 <div>
                   <dt>
@@ -391,7 +388,7 @@ if( $group_name ): ?>
                     <?php echo '¥'.$fields['price2']; ?>
                   </dd>
                 </div>
-                <?php } ?>
+                <?php endforeach; ?>
               </dl>
             </li>
             <li class="price__list-items">
@@ -399,7 +396,7 @@ if( $group_name ): ?>
               <dl class="price__list-item">
                 <?php
                   $repeat_item = SCF::get_option_meta('theme-options-pricing', 'fun');
-                  foreach ($repeat_item as $fields) { 
+                  foreach ($repeat_item as $fields):
                 ?>
                 <div>
                   <dt>
@@ -409,7 +406,7 @@ if( $group_name ): ?>
                     <?php echo '¥'.$fields['price3']; ?>
                   </dd>
                 </div>
-                <?php } ?>
+                <?php endforeach; ?>
               </dl>
             </li>
             <li class="price__list-items">
@@ -417,7 +414,7 @@ if( $group_name ): ?>
               <dl class="price__list-item">
                 <?php
                   $repeat_item = SCF::get_option_meta('theme-options-pricing','special');
-                  foreach ($repeat_item as $fields) { 
+                  foreach ($repeat_item as $fields):
                 ?>
                 <div>
                   <dt>
@@ -427,7 +424,7 @@ if( $group_name ): ?>
                     <?php echo '¥'.$fields['price4']; ?>
                   </dd>
                 </div>
-                <?php } ?>
+                <?php endforeach; ?>
               </dl>
             </li>
           </ul>

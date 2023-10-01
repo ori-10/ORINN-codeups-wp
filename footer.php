@@ -86,41 +86,35 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       </div>
 
       <ul class="footer__link-items">
-        <li class="footer__link-item1">
-          <?php
-// ユーザー情報のIDを取得
-$user_id = get_current_user_id();
+        <?php
+          // ユーザー情報のIDを固定
+          $user_id = 1;
 
-// ACFのフィールドから情報を取得
-$group = get_field('sns_1', 'user_' . $user_id);
-if ($group && !empty($group['sns_icon'])) {
-    $icon = $group['sns_icon'];
-    $url = $group['sns_url'];
-    $name = $group['sns_name'];
-    echo '<a target="_blank" href="' . $url . '">';
-    echo '<img src="' . $icon . '" alt="' . $name . '" />';
-    echo '</a>';
-}
-?>
-        </li>
-        <li class="footer__link-item2">
-          <?php
-// ユーザー情報のIDを取得
-$user_id = get_current_user_id();
+          // フィールド名のプレフィックス
+          $field_prefix = 'sns_';
 
-// ACFのフィールドから情報を取得
-$group = get_field('sns_2', 'user_' . $user_id);
-if ($group && !empty($group['sns_icon'])) {
-    $icon = $group['sns_icon'];
-    $url = $group['sns_url'];
-    $name = $group['sns_name'];
-    echo '<a target="_blank" href="' . $url . '">';
-    echo '<img src="' . $icon . '" alt="' . $name . '" />';
-    echo '</a>';
-}
-?>
-        </li>
+          for ($i = 1; ; $i++) {
+            $field_name = $field_prefix . $i;
+            $group = get_field($field_name, 'user_' . $user_id);
+
+            if ($group && !empty($group['sns_icon'])) {
+              $icon = $group['sns_icon'];
+              $url = $group['sns_url'];
+              $name = $group['sns_name'];
+
+              echo '<li class="footer__link-item' . $i . '">';
+              echo '<a target="_blank" href="' . esc_url($url) . '">';
+              echo '<img src="' . esc_url($icon) . '" alt="' . esc_attr($name) . '" />';
+              echo '</a>';
+              echo '</li>';
+            } else {
+              // フィールドが存在しない場合、ループを終了
+              break;
+            }
+          }
+          ?>
       </ul>
+
     </div>
 
     <nav class="footer__nav-block footer-nav">

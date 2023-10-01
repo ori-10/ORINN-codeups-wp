@@ -21,7 +21,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
       <?php 
-      echo "<h2>" . get_the_archive_title() . "</h2>"; ?>
+      echo "<h1>" . get_the_archive_title() . "</h1>"; ?>
     </div>
   </div>
 </div>

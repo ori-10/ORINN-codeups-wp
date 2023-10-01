@@ -22,13 +22,13 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       <h2>人気記事</h2>
     </div>
     <?php
-setPostViews(get_the_ID());
-$args = array(
-    'meta_key' => 'post_views_count',
-    'orderby' => 'meta_value_num',
-    'posts_per_page' => 3,
-    'order' => 'DESC',
-);
+      setPostViews(get_the_ID());
+      $args = array(
+          'meta_key' => 'post_views_count',
+          'orderby' => 'meta_value_num',
+          'posts_per_page' => 3,
+          'order' => 'DESC',
+      );
 
 $custom_query = new WP_Query($args);
 
@@ -58,10 +58,10 @@ if ($custom_query->have_posts()) :
   <!-- お客様の声/口コミ -->
   <!-- ############################################ -->
   <?php
-              $args = array('post_type' => 'voice',
-              'posts_per_page' => 1); 
-              $the_query = new WP_Query($args); 
-          ?>
+    $args = array('post_type' => 'voice',
+    'posts_per_page' => 1); 
+    $the_query = new WP_Query($args); 
+    ?>
   <div class="aside__content">
     <div class="aside__title">
       <h2>口コミ</h2>
@@ -78,16 +78,14 @@ if ($custom_query->have_posts()) :
         </figure>
 
         <div class="aside-voice__info">
-          <span class="voice-card__age"><?php the_field('voice_1'); ?><?php the_field('('.'voice_2'.'
-                          )'); ?></span>
+          <span class="voice-card__age"><?php the_field('voice_1'); ?><?php the_field('('.'voice_2'.')'); ?></span>
           <h3 class="aside-voice__title">
             <?php the_field('voice_title'); ?>
           </h3>
         </div>
       </div>
     </div>
-    <?php endwhile; ?>
-    <?php wp_reset_postdata(); endif; ?>
+    <?php endwhile; wp_reset_postdata(); endif; ?>
 
     <div class="aside__btn">
       <a href="<?php echo $voice; ?>" class="btn">
@@ -101,10 +99,10 @@ if ($custom_query->have_posts()) :
   <!-- キャンペーン -->
   <!-- ############################################ -->
   <?php
-              $args = array('post_type' => 'campaign',
-              'posts_per_page' => 2); 
-              $the_query = new WP_Query($args); 
-            ?>
+    $args = array('post_type' => 'campaign',
+      'posts_per_page' => 2); 
+      $the_query = new WP_Query($args); 
+    ?>
   <div class="aside__content">
     <div class="aside__title">
       <h2>キャンペーン</h2>
@@ -132,8 +130,7 @@ if ($custom_query->have_posts()) :
           </div>
         </div>
       </div>
-      <?php endwhile; ?>
-      <?php wp_reset_postdata(); endif; ?>
+      <?php endwhile; wp_reset_postdata(); endif; ?>
     </div>
 
     <div class="aside__btn">
@@ -155,46 +152,44 @@ if ($custom_query->have_posts()) :
       <div class="aside-archive__inner">
 
         <?php
-$year_prev = null;
-$months = $wpdb->get_results("SELECT DISTINCT MONTH( post_date ) AS month ,
-                                    YEAR( post_date ) AS year,
-                                    COUNT( id ) as post_count FROM $wpdb->posts
-                                    WHERE post_status = 'publish' and post_date <= now( )
-                                    and post_type = 'post'
-                                    GROUP BY month , year
-                                    ORDER BY post_date DESC");
+    $year_prev = null;
+    $months = $wpdb->get_results("SELECT DISTINCT MONTH( post_date ) AS month ,
+            YEAR( post_date ) AS year,
+            COUNT( id ) as post_count FROM $wpdb->posts
+            WHERE post_status = 'publish' and post_date <= now( )
+            and post_type = 'post'
+            GROUP BY month , year
+            ORDER BY post_date DESC");
 
-$first = true; // 最初の要素かどうかを示すフラグ
+    $first = true; // 最初の要素かどうかを示すフラグ
 
-foreach($months as $month) :
-$year_current = $month->year;
-if ($year_current != $year_prev){
-  if ($year_prev != null){
+    foreach($months as $month):
+    $year_current = $month->year;
+    if ($year_current != $year_prev):
+      if ($year_prev != null):
     ?>
         </ul>
       </div>
-      <?php
-  }
-  ?>
-      <div class="aside-archive__items js-archive-accordion <?php if ($first) echo 'open'; ?>">
-        <p><?php echo $month->year; ?></p>
+      <?php endif; ?>
+      <div class="aside-archive__items js-archive-accordion <?= $first ? 'open' : '' ?>">
+        <p><?= $month->year ?></p>
         <ul class="aside-archive__item">
-          <?php
-    $first = false; // 最初の要素が表示されたのでフラグを false に設定
-  }
-  ?>
+          <?php $first = false; // 最初の要素が表示されたのでフラグを false に設定
+        endif;?>
           <li>
             <a
-              href="<?php bloginfo('url') ?>/<?php echo $month->year; ?>/<?php echo date("m", mktime(0, 0, 0, $month->month, 1, $month->year)) ?>">
-              <?php echo '▶︎&thinsp;'.date("n", mktime(0, 0, 0, $month->month, 1, $month->year)) ?>月
+              href="<?= bloginfo('url') ?>/<?= $month->year ?>/<?= date("m", mktime(0, 0, 0, $month->month, 1, $month->year)) ?>">
+              <?= '▶︎&thinsp;'.date("n", mktime(0, 0, 0, $month->month, 1, $month->year)) ?>月
             </a>
           </li>
-          <?php $year_prev = $year_current;
-endforeach;
-?>
+          <?php
+        $year_prev = $year_current;
+        endforeach;
+        ?>
         </ul>
       </div>
     </div>
+  </div>
   </div>
   </div>
 </aside>

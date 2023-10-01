@@ -6,7 +6,7 @@
 <div class="sub-mv js-mv-height sub-mv--faq">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
-      <h2>FAQ</h2>
+      <h1>FAQ</h1>
     </div>
   </div>
 </div>
@@ -25,23 +25,23 @@
       <div class="sub-faq__accordion">
         <?php
           $repeat_item = SCF::get_option_meta('theme-options-faq', 'faq_group');
-          foreach ($repeat_item as $fields) {
-        ?>
+          foreach ($repeat_item as $fields):
+          ?>
         <div class="sub-faq__accordions">
           <ul class="faq-accordion js-accordion open">
             <li class="faq-accordion__title">
-              <p><?php echo $fields['question']; ?></p>
+              <p><?= $fields['question']; ?></p>
               <p class="faq-accordion__icon">
                 <span></span>
                 <span></span>
               </p>
             </li>
             <li class="faq-accordion__text">
-              <?php echo $fields['answer']; ?>
+              <?= $fields['answer']; ?>
             </li>
           </ul>
         </div>
-        <?php } ?>
+        <?php endforeach; ?>
       </div>
     </div>
   </div>

@@ -20,7 +20,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
 <div class="sub-mv sub-mv--voice js-mv-height">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
-      <h2>Voice</h2>
+      <h1>Voice</h1>
     </div>
   </div>
 </div>
@@ -36,17 +36,19 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
       <div class="sub-voice__tab">
         <ul class="tab js-tab">
           <li class="tab__item"><a href="<?php echo $voice; ?>">ALL</a></li>
-
           <?php
           $terms = get_terms('voice_category');
-          foreach ($terms as $term) {
+          foreach ($terms as $term):
               $term_link = get_term_link($term);
               $term_name = esc_html($term->name);
               $active_class = (is_tax('voice_category', $term->slug)) ? 'active' : '';
-              
-              echo '<li class="tab__item ' . $active_class . '"><a href="' . $term_link . '">' . $term_name . '</a></li>';
-          }
           ?>
+
+          <li class="tab__item <?= $active_class ?>">
+            <a href="<?= $term_link ?>"><?= $term_name ?></a>
+          </li>
+
+          <?php endforeach; ?>
 
         </ul>
 

@@ -6,7 +6,7 @@
 <div class="sub-mv js-mv-height sub-mv--price">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
-      <h2>Price</h2>
+      <h1>Price</h1>
     </div>
   </div>
 </div>
@@ -34,7 +34,7 @@
           <dl class="chart__item">
             <?php
                   $repeat_item = SCF::get_option_meta('theme-options-pricing' ,'license');
-                  foreach ($repeat_item as $fields) { 
+                  foreach ($repeat_item as $fields):
                 ?>
             <div>
               <dt>
@@ -44,7 +44,7 @@
                 <?php echo '¥'.$fields['price1']; ?>
               </dd>
             </div>
-            <?php } ?>
+            <?php endforeach; ?>
           </dl>
         </li>
         <li id="price2" class="chart">
@@ -56,7 +56,7 @@
           <dl class="chart__item">
             <?php
                   $repeat_item = SCF::get_option_meta('theme-options-pricing', 'experience');
-                  foreach ($repeat_item as $fields) { 
+                  foreach ($repeat_item as $fields): 
                 ?>
             <div>
               <dt>
@@ -66,7 +66,7 @@
                 <?php echo '¥'.$fields['price2']; ?>
               </dd>
             </div>
-            <?php } ?>
+            <?php endforeach; ?>
           </dl>
         </li>
         <li id="price3" class="chart">
@@ -78,7 +78,7 @@
           <dl class="chart__item">
             <?php
                   $repeat_item = SCF::get_option_meta('theme-options-pricing', 'fun');
-                  foreach ($repeat_item as $fields) { 
+                  foreach ($repeat_item as $fields):
                 ?>
             <div>
               <dt>
@@ -88,7 +88,7 @@
                 <?php echo '¥'.$fields['price3']; ?>
               </dd>
             </div>
-            <?php } ?>
+            <?php endforeach; ?>
           </dl>
         </li>
         <li class="chart">
@@ -100,7 +100,7 @@
           <dl class="chart__item">
             <?php
                   $repeat_item = SCF::get_option_meta('theme-options-pricing','special');
-                  foreach ($repeat_item as $fields) { 
+                  foreach ($repeat_item as $fields): 
                 ?>
             <div>
               <dt>
@@ -110,7 +110,7 @@
                 <?php echo '¥'.$fields['price4']; ?>
               </dd>
             </div>
-            <?php } ?>
+            <?php endforeach; ?>
           </dl>
         </li>
       </ul>

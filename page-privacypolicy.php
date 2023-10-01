@@ -6,7 +6,7 @@
 <div class="sub-mv js-mv-height">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
-      <h2>Privacy Policy</h2>
+      <h1>Privacy Policy</h1>
     </div>
   </div>
 </div>

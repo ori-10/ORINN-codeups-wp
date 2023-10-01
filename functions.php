@@ -255,10 +255,10 @@ function setPostViews($postID) {
 }
 //headに出力されるタグを削除(閲覧数を重複してカウントするのを防止するため)
 remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
-  
+
 //クローラーのアクセス判別
 function is_bot() {
-  $ua = $SERVER[HTTP_USER_AGENT];
+  $ua = $_SERVER['HTTP_USER_AGENT'];
   $bot = array(
     "googlebot",
     "msnbot",
@@ -272,20 +272,31 @@ function is_bot() {
   return false;
 }
 
-
 /* アーカイブページ タイトル
 ***************************************************************/
-function my_archive_title($title) {
-  if ( is_category() ) {
-      $title = single_cat_title( '', false ); 
-  } elseif ( is_tag() ) { 
-      $title = single_tag_title( '', false ); 
-  } elseif ( is_month() ) {
-      $title = get_the_date( 'n月の記事', get_queried_object() );
+add_filter( 'get_the_archive_title', function ($title) {
+  if (is_category()) {
+    $title = single_cat_title('', false);
+  } elseif (is_tag()) {
+    $title = single_tag_title('', false);
+  } elseif (is_tax()) {
+    $title = single_term_title('', false);
+  } elseif (is_post_type_archive() ){
+    $title = post_type_archive_title('', false);
+  } elseif (is_date()) {
+    if (is_year()) {
+      $title = get_the_time('Y年の記事');
+    } elseif (is_month()) {
+      $title = get_the_time('Y年n月の記事');
+    }
+  } elseif (is_search()) {
+    $title = '検索結果：' . esc_html( get_search_query(false) );
+  } elseif (is_404()) {
+    $title = 'ページが見つかりません';
+  } else {
   }
-  return $title; 
-}
-add_filter( 'get_the_archive_title', 'my_archive_title' );
+  return $title;
+});
 
 
 /* オプションページ
@@ -294,10 +305,10 @@ add_filter( 'get_the_archive_title', 'my_archive_title' );
 SCF::add_options_page( '', '料金一覧', 'manage_options', 'theme-options-pricing', 'dashicons-money-alt', 9 );
 
 /* よくある質問*/
-SCF::add_options_page( '', 'よくある質問', 'manage_options', 'theme-options-faq', 'dashicons-format-chat', 9 );
+SCF::add_options_page( '', 'よくある質問', 'manage_options', 'theme-options-faq', 'dashicons-editor-help', 9 );
 
 /* 私たちについて*/
-SCF::add_options_page( '', 'ギャラリー', 'manage_options', 'theme-options-gallery', 'dashicons-format-gallery', 9 );
+SCF::add_options_page( '', 'ギャラリー', 'manage_options', 'theme-options-gallery', 'dashicons-layout', 9 );
 
 
 /* voice 文字数制限ありのタイトルへ変更

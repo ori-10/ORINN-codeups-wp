@@ -20,7 +20,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
 <div class="sub-mv js-mv-height sub-mv--blog">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
-      <h2>Blog</h2>
+      <h1>Blog</h1>
     </div>
   </div>
 </div>

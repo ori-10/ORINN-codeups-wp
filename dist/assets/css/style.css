@@ -1051,12 +1051,7 @@ a {
 	flex-direction: column;
 	height: 100%;
 	position: relative;
-	transition: opacity 0.4s;
 	width: 100%;
-}
-
-.campaign-card:hover {
-	opacity: 0.7;
 }
 
 .campaign-card__body {
@@ -1338,11 +1333,6 @@ a {
 .contact__btn {
 	margin-top: 2.5rem;
 	text-align: center;
-}
-
-.error404 {
-	background: #408F95;
-	color: #fff;
 }
 
 .faq-accordion p {
@@ -3079,8 +3069,14 @@ div.wpcf7-mail-sent-ok {
 	padding: 0.625rem 0;
 	position: relative;
 	text-align: center;
+	transition: 0.3s all;
 	width: 100%;
 	z-index: 1;
+}
+
+.sub-information__tab-label a:hover {
+	background: #408F95;
+	color: #fff;
 }
 
 .sub-information__tab-label span {
@@ -3208,7 +3204,7 @@ div.wpcf7-mail-sent-ok {
 	width: 100%;
 }
 
-.sub-mv__title h2 {
+.sub-mv__title h1 {
 	color: #fff;
 	font-family: "Lato", sans-serif;
 	font-size: 2.5rem;
@@ -4695,7 +4691,12 @@ form dl.form__select {
 	position: absolute;
 	right: 0;
 	top: 0;
+	transition: 0.3s all;
 	width: 100%;
+}
+
+.sub-information__tab-label:hover span:first-child::before {
+	filter: brightness(1000%);
 }
 
 .sub-information__tab-label--2 span:first-child::before {
@@ -4783,7 +4784,7 @@ form dl.form__select {
 	top: 59%;
 }
 
-.sub-mv__title h2 {
+.sub-mv__title h1 {
 	font-size: 5rem;
 }
 

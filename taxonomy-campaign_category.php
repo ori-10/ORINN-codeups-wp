@@ -20,7 +20,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
 <div class="sub-mv js-mv-height sub-mv--campaign">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
-      <h2>Campaign</h2>
+      <h1>Campaign</h1>
     </div>
   </div>
 </div>
@@ -44,15 +44,18 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
           <li class="tab__item"><a href="<?php echo $campaign; ?>">ALL</a></li>
 
           <?php
-          $terms = get_terms('campaign_category');
-          foreach ($terms as $term) {
-              $term_link = get_term_link($term);
-              $term_name = esc_html($term->name);
-              $active_class = (is_tax('campaign_category', $term->slug)) ? 'active' : '';
-              
-              echo '<li class="tab__item ' . $active_class . '"><a href="' . $term_link . '">' . $term_name . '</a></li>';
-          }
-          ?>
+            $terms = get_terms('campaign_category');
+            foreach ($terms as $term):
+                $term_link = get_term_link($term);
+                $term_name = esc_html($term->name);
+                $active_class = (is_tax('campaign_category', $term->slug)) ? 'active' : '';
+            ?>
+
+          <li class="tab__item <?= $active_class ?>">
+            <a href="<?= $term_link ?>"><?= $term_name ?></a>
+          </li>
+
+          <?php endforeach; ?>
 
         </ul>
 

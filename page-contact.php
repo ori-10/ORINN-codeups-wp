@@ -6,7 +6,7 @@
 <div class="sub-mv js-mv-height sub-mv--thanks-page">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
-      <h2>Contact</h2>
+      <h1>Contact</h1>
     </div>
   </div>
 </div>

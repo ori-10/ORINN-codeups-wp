@@ -24,24 +24,57 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
         <div class="swiper-container js-mv-swiper">
           <div class="swiper-wrapper">
             <?php
-              $repeat_item = SCF::get('mv-img');
-              foreach ($repeat_item as $fields ) {
-              $image_url_first = wp_get_attachment_image_src($fields['mv-img1'] , 'full');
-              $image_url_second = wp_get_attachment_image_src($fields['mv-img2'] , 'full');
-            ?>
+              $group_name = get_field('group1');	
+              if( $group_name ): ?>
             <div class="swiper-slide">
               <div class="mv__slide-img">
                 <picture>
-                  <source media="(min-width: 768px)" srcset="<?php echo $image_url_first[0]; ?>"
-                    width="<?php echo $image_url_first[1]; ?>" height="<?php echo $image_url_first[2]; ?>"
-                    alt="<?php echo $fields["mv-img-alt"]; ?>">
-                  <img src="<?php echo $image_url_second[0]; ?>" width="<?php echo $image_url_second[1]; ?>"
-                    height="<?php echo $image_url_second[2]; ?>" alt="<?php echo $fields["mv-img-alt"]; ?>">
+                  <source media="(min-width: 768px)" srcset="<?php echo $group_name['mv_img1']; ?>"
+                    alt="<?php echo $group_name['mv_img_alt']; ?>">
+                  <img src="<?php echo $group_name['mv_img2']; ?>" alt="<?php echo $group_name['mv_img_alt']; ?>">
                 </picture>
               </div>
             </div>
-
-            <?php } ?>
+            <?php endif; ?>
+            <?php
+              $group_name = get_field('group2');	
+              if( $group_name ): ?>
+            <div class="swiper-slide">
+              <div class="mv__slide-img">
+                <picture>
+                  <source media="(min-width: 768px)" srcset="<?php echo $group_name['mv_img1']; ?>"
+                    alt="<?php echo $group_name['mv_img_alt']; ?>">
+                  <img src="<?php echo $group_name['mv_img2']; ?>" alt="<?php echo $group_name['mv_img_alt']; ?>">
+                </picture>
+              </div>
+            </div>
+            <?php endif; ?>
+            <?php
+              $group_name = get_field('group3');	
+              if( $group_name ): ?>
+            <div class="swiper-slide">
+              <div class="mv__slide-img">
+                <picture>
+                  <source media="(min-width: 768px)" srcset="<?php echo $group_name['mv_img1']; ?>"
+                    alt="<?php echo $group_name['mv_img_alt']; ?>">
+                  <img src="<?php echo $group_name['mv_img2']; ?>" alt="<?php echo $group_name['mv_img_alt']; ?>">
+                </picture>
+              </div>
+            </div>
+            <?php endif; ?>
+            <?php
+              $group_name = get_field('group4');	
+              if( $group_name ): ?>
+            <div class="swiper-slide">
+              <div class="mv__slide-img">
+                <picture>
+                  <source media="(min-width: 768px)" srcset="<?php echo $group_name['mv_img1']; ?>"
+                    alt="<?php echo $group_name['mv_img_alt']; ?>">
+                  <img src="<?php echo $group_name['mv_img2']; ?>" alt="<?php echo $group_name['mv_img_alt']; ?>">
+                </picture>
+              </div>
+            </div>
+            <?php endif; ?>
           </div>
         </div>
       </div>
@@ -102,8 +135,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                 </div>
               </div>
             </div>
-            <?php endwhile; ?>
-            <?php wp_reset_postdata(); endif; ?>
+            <?php endwhile; wp_reset_postdata(); endif; ?>
           </div>
         </div>
         <div class="campaign__arrow-btn swiper-button-next">
@@ -197,6 +229,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
     </div>
   </section>
 
+
   <!-- ############################################ -->
   <!-- ブログ -->
   <!-- ############################################ -->
@@ -230,8 +263,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
             </div>
           </div>
         </a>
-        <?php endwhile; ?>
-        <?php wp_reset_postdata(); endif; ?>
+        <?php endwhile; wp_reset_postdata(); endif; ?>
 
       </div>
       <div class="blog__btn">
@@ -292,8 +324,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
             <?php the_excerpt(); ?>
           </div>
         </div>
-        <?php endwhile; ?>
-        <?php wp_reset_postdata(); endif; ?>
+        <?php endwhile; wp_reset_postdata(); endif; ?>
 
       </div>
 
@@ -328,8 +359,8 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
               <h3 class="price__item-title">ライセンス講習</h3>
               <dl class="price__list-item">
                 <?php
-                  $repeat_item = SCF::get('license', 12 );
-                  foreach ($repeat_item as $fields) { 
+                  $repeat_item = SCF::get_option_meta('theme-options-pricing', 'license');
+                  foreach ($repeat_item as $fields): 
                 ?>
                 <div>
                   <dt>
@@ -339,15 +370,15 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                     <?php echo '¥'.$fields['price1']; ?>
                   </dd>
                 </div>
-                <?php } ?>
+                <?php endforeach; ?>
               </dl>
             </li>
             <li class="price__list-items">
               <h3 class="price__item-title">体験ダイビング</h3>
               <dl class="price__list-item">
                 <?php
-                  $repeat_item = SCF::get('experience', 12 );
-                  foreach ($repeat_item as $fields) { 
+                  $repeat_item = SCF::get_option_meta('theme-options-pricing', 'experience');
+                  foreach ($repeat_item as $fields): 
                 ?>
                 <div>
                   <dt>
@@ -357,15 +388,15 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                     <?php echo '¥'.$fields['price2']; ?>
                   </dd>
                 </div>
-                <?php } ?>
+                <?php endforeach; ?>
               </dl>
             </li>
             <li class="price__list-items">
               <h3 class="price__item-title">ファンダイビング</h3>
               <dl class="price__list-item">
                 <?php
-                  $repeat_item = SCF::get('fun', 12 );
-                  foreach ($repeat_item as $fields) { 
+                  $repeat_item = SCF::get_option_meta('theme-options-pricing', 'fun');
+                  foreach ($repeat_item as $fields):
                 ?>
                 <div>
                   <dt>
@@ -375,15 +406,15 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                     <?php echo '¥'.$fields['price3']; ?>
                   </dd>
                 </div>
-                <?php } ?>
+                <?php endforeach; ?>
               </dl>
             </li>
             <li class="price__list-items">
               <h3 class="price__item-title">スペシャルダイビング</h3>
               <dl class="price__list-item">
                 <?php
-                  $repeat_item = SCF::get('special', 12 );
-                  foreach ($repeat_item as $fields) { 
+                  $repeat_item = SCF::get_option_meta('theme-options-pricing','special');
+                  foreach ($repeat_item as $fields):
                 ?>
                 <div>
                   <dt>
@@ -393,7 +424,7 @@ $sitemap = esc_url( home_url( '/sitemap/' ) );
                     <?php echo '¥'.$fields['price4']; ?>
                   </dd>
                 </div>
-                <?php } ?>
+                <?php endforeach; ?>
               </dl>
             </li>
           </ul>

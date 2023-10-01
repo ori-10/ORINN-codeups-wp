@@ -6,7 +6,7 @@
 <div class="sub-mv js-mv-height sub-mv--about">
   <div class="sub-mv__inner">
     <div class="sub-mv__title">
-      <h2>About us</h2>
+      <h1>About us</h1>
     </div>
   </div>
 </div>
@@ -71,14 +71,14 @@
 
           <?php
             $repeat_item = SCF::get_option_meta('theme-options-gallery', 'gallery');
-            foreach ($repeat_item as $fields) {
+            foreach ($repeat_item as $fields):
             $image_url = wp_get_attachment_image_src($fields['about-img'] , 'full');
           ?>
           <li class="gallery__item js-modal">
             <img src="<?php echo $image_url[0]; ?>" width="<?php echo $image_url[1]; ?>"
               height="<?php echo $image_url[2]; ?>" alt="<?php echo $fields["about-img-alt"]; ?>" />
           </li>
-          <?php } ?>
+          <?php endforeach; ?>
 
         </ul>
       </div>
